@@ -11,6 +11,8 @@ NESL (NEsted String Literal) is a line-oriented configuration language designed 
 3. **String-only values**: All leaf values are UTF-8 strings.
 4. **Whitespace-preserving**: Whitespace in strings preserved exactly.
 
+no comments allowed in nesl syntax
+
 ## Document Structure
 
 ### Block Wrappers
@@ -76,6 +78,21 @@ contains )pv""" and also the entire R"""pv(delimiters)pv""" in text
 - Opening `{` and closing `}` must be on separate lines
 - Keys: Any UTF-8 except whitespace or `=`
 - Duplicate keys allowed (last wins)
+    - but also throw an error for this:
+    - Track duplicates, report all, use last value:
+        -  Parse succeeds
+        -   Errors reported: "Duplicate key 'key' at lines 3, 4, 7"
+        -   Data structure contains last value
+        -   LLM sees all issues
+        
+duplicates are non-fatal errors. Parse continues, last value wins, but errors array contains:
+```
+typescript{
+  code: 'duplicate_key',
+  message: 'Duplicate key "host" (previously defined at line 3)',
+  line: 5
+}
+```
 - Values can be: strings, objects, arrays, or multiline strings
 
 ## Arrays
