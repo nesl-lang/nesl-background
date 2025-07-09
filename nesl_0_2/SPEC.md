@@ -46,6 +46,8 @@ R"""pv(content)pv"""
 4. Verify only whitespace follows closing `)pv"""`
 5. Any non-whitespace after closing → Error
 
+**Multiple literals per line**: If multiple `R"""pv(` appear on one line, only the first is recognized. Everything between the first `R"""pv(` and the last `)pv"""` becomes the string value, including any intermediate markers.
+
 ### Examples
 ```nesl
 simple = R"""pv(hello world)pv"""
@@ -72,7 +74,7 @@ contains )pv""" and also the entire R"""pv(delimiters)pv""" in text
 
 ### Rules
 - Opening `{` and closing `}` must be on separate lines
-- Keys: Any UTF-8 except whitespace, `=`, or zero-width characters
+- Keys: Any UTF-8 except whitespace or `=`
 - Duplicate keys allowed (last wins)
 - Values can be: strings, objects, arrays, or multiline strings
 

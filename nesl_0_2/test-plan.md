@@ -288,3 +288,60 @@ This approach balances precision with simplicity, providing enough information f
 # include context in error messages 
 
 important for LLM localization and understanding.  a single multiline json string containing the line before, the target line, and the line after
+
+
+# exact test plan
+
+```
+tests/cases/
+
+core/
+  001_basic_strings
+  002_empty_structures
+  003_simple_objects
+  004_simple_arrays
+  005_multiline_strings
+  006_nested_objects
+  007_nested_arrays
+  008_mixed_nesting
+
+edge-cases/
+  001_string_with_delimiter
+  002_unicode_keys
+  003_unicode_values
+  004_whitespace_preservation
+  005_duplicate_keys
+  006_deeply_nested_structures
+  007_whitespace_only_multiline
+  008_multiple_strings_one_line
+
+errors/
+  001_unterminated_string
+  002_delimiter_mismatch
+  003_invalid_context
+  004_invalid_key
+  005_content_after_string
+  006_missing_block_wrapper
+  007_content_between_closing_and_block_end
+  008_unclosed_structure
+  009_assignment_in_array
+  010_dash_in_object
+  011_eof_mid_structure
+
+blocks/
+  001_multiple_blocks
+  002_text_between_blocks
+  003_empty_block
+
+custom-syntax/
+  001_custom_delimiters
+  002_delimiter_collision
+
+recovery/
+  001_error_then_valid_line
+```
+
+# follow ups
+
+Error tests assume file-relative line numbers (not block-relative)
+zero-width key chars are valid 
