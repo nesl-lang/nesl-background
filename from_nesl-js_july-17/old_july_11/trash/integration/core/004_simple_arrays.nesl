@@ -1,0 +1,23 @@
+<<<<<<<<<nesl
+{
+  strings = [
+    - R"""pv(first)pv"""
+    - R"""pv(second)pv"""
+    - R"""pv(third)pv"""
+  ]
+  mixed = [
+    - R"""pv(string value)pv"""
+    - {
+      type = R"""pv(object)pv"""
+      nested = R"""pv(yes)pv"""
+    }
+    - [
+      - R"""pv(nested)pv"""
+      - R"""pv(array)pv"""
+    ]
+  ]
+  single = [
+    - R"""pv(only one)pv"""
+  ]
+}
+=========nesl

@@ -1,0 +1,7 @@
+[
+  {
+    "poem": "First line\nAfter blank line\n\nAfter empty string",
+    "mixed_empty": "Start\n\n\nEnd",
+    "tabs_spaces": "Line 1\nAfter tab line\nAfter space line"
+  }
+]

@@ -1,0 +1,24 @@
+R"""pv(simple)pv"""
+R"""pv()pv"""
+R"""pv(contains )pv""" in the middle)pv"""
+R"""pv(has )pv""" and also R"""pv( patterns)pv"""
+R"""pv()pv""" at the beginning)pv"""
+R"""pv(ends with )pv""")pv"""
+R"""pv(R"""pv(not actually nested)pv""")pv"""
+R"""pv(multiple )pv""" and )pv""" and even )pv""" patterns)pv"""
+prefix R"""pv(string with prefix)pv"""
+R"""pv(string with suffix)pv""" suffix
+  R"""pv(indented string)pv"""
+    R"""pv(deeply indented)pv"""
+key = R"""pv(assignment context)pv"""
+  key = R"""pv(indented assignment)pv"""
+- R"""pv(array element)pv"""
+  - R"""pv(indented array element)pv"""
+R"""pv(first)pv""" R"""pv(second)pv"""
+R"""pv(one)pv""" R"""pv(two)pv""" R"""pv(three)pv"""
+R"""pv(text)pv""")pv""")pv""")pv"""
+R"""pv(unterminated string
+R"""pv(good)pv""" extra content
+R"""pv(valid)pv"""   
+no string markers here
+  R"""pv(missing close

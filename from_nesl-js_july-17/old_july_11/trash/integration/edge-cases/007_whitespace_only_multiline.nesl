@@ -1,0 +1,25 @@
+<<<<<<<<<nesl
+{
+  poem = (
+    R"""pv(First line)pv"""
+    
+    R"""pv(After blank line)pv"""
+    R"""pv()pv"""
+    R"""pv(After empty string)pv"""
+  )
+  mixed_empty = (
+    R"""pv(Start)pv"""
+    R"""pv()pv"""
+    
+    R"""pv()pv"""
+    R"""pv(End)pv"""
+  )
+  tabs_spaces = (
+    R"""pv(Line 1)pv"""
+    	
+    R"""pv(After tab line)pv"""
+        
+    R"""pv(After space line)pv"""
+  )
+}
+=========nesl

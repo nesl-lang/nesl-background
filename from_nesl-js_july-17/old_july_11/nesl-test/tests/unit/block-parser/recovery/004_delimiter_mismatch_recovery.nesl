@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  array = [
+    - R"""pv(item)pv"""
+  }
+  after_mismatch = R"""pv(unreachable)pv"""
+}
+=========nesl

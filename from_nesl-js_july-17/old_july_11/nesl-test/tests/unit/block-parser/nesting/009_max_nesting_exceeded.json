@@ -1,0 +1,10 @@
+[
+  {
+    "note": "This would need 101 levels to trigger max_depth_exceeded",
+    "deep": {
+      "nested": {
+        "structure": "Parser should track depth via context stack"
+      }
+    }
+  }
+]

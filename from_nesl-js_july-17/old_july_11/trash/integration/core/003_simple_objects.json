@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Alice",
+    "age": "30",
+    "is_admin": "true",
+    "unicode_key_世界": "unicode value",
+    "key_with_numbers123": "value123",
+    "CAPS_KEY": "CAPS VALUE",
+    "under_score_key": "underscore value",
+    "dash-key": "dash value"
+  }
+]

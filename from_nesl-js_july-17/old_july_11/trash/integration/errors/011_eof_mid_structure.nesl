@@ -1,0 +1,5 @@
+<<<<<<<<<nesl
+{
+  key = R"""pv(value)pv"""
+  nested = {
+    item = R"""pv(incomplete)pv"""

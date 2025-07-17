@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 3,
+      "code": "inline_structure_not_allowed",
+      "message": "Structure delimiters must be on their own lines",
+      "content": "  data = { key = R\"\"\"pv(value)pv\"\"\" }",
+      "context": "<<<<<<<<<nesl\n{\n  data = { key = R\"\"\"pv(value)pv\"\"\" }\n}\n=========nesl"
+    }
+  ]
+}

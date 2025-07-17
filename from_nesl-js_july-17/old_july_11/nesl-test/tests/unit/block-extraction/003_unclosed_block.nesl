@@ -1,0 +1,6 @@
+<<<<<<<<<nesl
+{
+  key = R"""pv(value)pv"""
+  nested = {
+    inner = R"""pv(never closes)pv"""
+  }

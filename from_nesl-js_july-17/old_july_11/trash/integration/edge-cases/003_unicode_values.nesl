@@ -1,0 +1,14 @@
+<<<<<<<<<nesl
+{
+  chinese = R"""pv(你好世界)pv"""
+  japanese = R"""pv(こんにちは世界)pv"""
+  arabic = R"""pv(مرحبا بالعالم)pv"""
+  emoji = R"""pv(🌍🌎🌏)pv"""
+  emoji_text = R"""pv(Hello 👋 World 🌍!)pv"""
+  math = R"""pv(∀x∈ℝ: x²≥0)pv"""
+  arrows = R"""pv(←↑→↓↔↕)pv"""
+  box_drawing = R"""pv(┌─┬─┐│ ││ │├─┼─┤└─┴─┘)pv"""
+  zero_width = R"""pv(a​b)pv"""
+  combining = R"""pv(é = e + ́)pv"""
+}
+=========nesl

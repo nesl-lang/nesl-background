@@ -1,0 +1,25 @@
+{
+  "errors": [
+    {
+      "line": 3,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  closing = R\"\"\"pv(value)pv\"\"\" }",
+      "context": "<<<<<<<<<nesl\n{\n  closing = R\"\"\"pv(value)pv\"\"\" }\n  garbage = R\"\"\"pv(value)pv\"\"\" extra\n  multiple = R\"\"\"pv(value)pv\"\"\" more stuff"
+    },
+    {
+      "line": 4,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  garbage = R\"\"\"pv(value)pv\"\"\" extra",
+      "context": "{\n  closing = R\"\"\"pv(value)pv\"\"\" }\n  garbage = R\"\"\"pv(value)pv\"\"\" extra\n  multiple = R\"\"\"pv(value)pv\"\"\" more stuff\n}"
+    },
+    {
+      "line": 5,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  multiple = R\"\"\"pv(value)pv\"\"\" more stuff",
+      "context": "  closing = R\"\"\"pv(value)pv\"\"\" }\n  garbage = R\"\"\"pv(value)pv\"\"\" extra\n  multiple = R\"\"\"pv(value)pv\"\"\" more stuff\n}\n=========nesl"
+    }
+  ]
+}

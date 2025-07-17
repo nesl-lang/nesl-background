@@ -1,0 +1,13 @@
+<<<<<<<<<nesl
+{
+  description = (
+    R"""pv(line 1)pv"""
+    R"""pv(line 2)pv"""
+  )
+  nested = {
+    text = (
+      R"""pv(nested multiline)pv"""
+    )
+  }
+}
+=========nesl

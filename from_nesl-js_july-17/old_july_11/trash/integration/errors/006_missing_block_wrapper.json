@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 1,
+      "code": "missing_block_wrapper",
+      "message": "NESL content must be wrapped in <<<<<<<<<nesl ... =========nesl blocks",
+      "content": "{",
+      "context": "{\n  key = R\"\"\"pv(no block wrapper)pv\"\"\"\n}"
+    }
+  ]
+}

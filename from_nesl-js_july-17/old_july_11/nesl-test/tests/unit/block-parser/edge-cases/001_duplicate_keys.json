@@ -1,0 +1,18 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "duplicate_key",
+      "message": "Duplicate key 'key' (previously defined on line 3)",
+      "content": "  key = R\"\"\"pv(second)pv\"\"\"",
+      "context": "{\n  key = R\"\"\"pv(first)pv\"\"\"\n  key = R\"\"\"pv(second)pv\"\"\"\n  other = R\"\"\"pv(value)pv\"\"\"\n  key = R\"\"\"pv(third)pv\"\"\""
+    },
+    {
+      "line": 6,
+      "code": "duplicate_key",
+      "message": "Duplicate key 'key' (previously defined on line 4)",
+      "content": "  key = R\"\"\"pv(third)pv\"\"\"",
+      "context": "  key = R\"\"\"pv(second)pv\"\"\"\n  other = R\"\"\"pv(value)pv\"\"\"\n  key = R\"\"\"pv(third)pv\"\"\"\n}\n=========nesl"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 6,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (whitespace)",
+      "content": "    bad key = R\"\"\"pv(error)pv\"\"\"",
+      "context": "  nested = {\n    valid = R\"\"\"pv(inside)pv\"\"\"\n    bad key = R\"\"\"pv(error)pv\"\"\"\n    after = R\"\"\"pv(continues)pv\"\"\"\n  }"
+    }
+  ]
+}

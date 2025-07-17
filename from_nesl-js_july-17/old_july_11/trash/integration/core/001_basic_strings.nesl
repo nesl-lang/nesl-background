@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  message = R"""pv(hello world)pv"""
+  empty = R"""pv()pv"""
+  spaces = R"""pv(  leading and trailing  )pv"""
+  unicode = R"""pv(Hello 世界 🌍)pv"""
+  punctuation = R"""pv(!@#$%^&*()-_=+[]{};:'"<>,.?/~`)pv"""
+}
+=========nesl

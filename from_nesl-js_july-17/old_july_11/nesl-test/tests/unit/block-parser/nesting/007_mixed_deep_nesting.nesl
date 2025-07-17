@@ -1,0 +1,15 @@
+<<<<<<<<<nesl
+{
+  data = [
+    - {
+      info = {
+        items = [
+          - {
+            value = R"""pv(deep)pv"""
+          }
+        ]
+      }
+    }
+  ]
+}
+=========nesl

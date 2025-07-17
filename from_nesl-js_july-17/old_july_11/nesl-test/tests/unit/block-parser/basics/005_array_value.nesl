@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  items = [
+    - R"""pv(first item)pv"""
+    - R"""pv(second item)pv"""
+  ]
+}
+=========nesl

@@ -1,0 +1,12 @@
+<<<<<<<<<nesl
+{
+  name = R"""pv(Alice)pv"""
+  age = R"""pv(30)pv"""
+  is_admin = R"""pv(true)pv"""
+  unicode_key_世界 = R"""pv(unicode value)pv"""
+  key_with_numbers123 = R"""pv(value123)pv"""
+  CAPS_KEY = R"""pv(CAPS VALUE)pv"""
+  under_score_key = R"""pv(underscore value)pv"""
+  dash-key = R"""pv(dash value)pv"""
+}
+=========nesl

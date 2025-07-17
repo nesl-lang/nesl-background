@@ -1,0 +1,10 @@
+<<<<<<<<<nesl
+{
+  before = R"""pv(parsed)pv"""
+  nested = {
+    inner = R"""pv(ok)pv"""
+    bad = R"""pv(unclosed
+  ]
+  after = R"""pv(unreachable due to mismatch)pv"""
+}
+=========nesl

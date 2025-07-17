@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  start_marker = R"""pv(contains <<<<<<<<<nesl in text)pv"""
+  end_marker = R"""pv(has =========nesl inside)pv"""
+  both = R"""pv(<<<<<<<<<nesl and =========nesl together)pv"""
+}
+=========nesl

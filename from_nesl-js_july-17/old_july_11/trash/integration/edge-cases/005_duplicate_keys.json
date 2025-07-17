@@ -1,0 +1,13 @@
+[
+  {
+    "key": "fourth value",
+    "nested": {
+      "dup": "inner second"
+    },
+    "array": [
+      {
+        "same": "array second"
+      }
+    ]
+  }
+]

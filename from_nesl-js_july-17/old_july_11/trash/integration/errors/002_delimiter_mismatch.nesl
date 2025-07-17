@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  obj = {
+    key = R"""pv(value)pv"""
+  ]
+}
+=========nesl

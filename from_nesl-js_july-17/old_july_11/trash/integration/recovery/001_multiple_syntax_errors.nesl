@@ -1,0 +1,10 @@
+<<<<<<<<<nesl
+{
+  valid1 = R"""pv(before errors)pv"""
+  bad key = R"""pv(space in key)pv"""
+  R"""pv(orphan string)pv"""
+  unterminated = R"""pv(missing end
+  content_after = R"""pv(ok)pv""" extra stuff
+  valid2 = R"""pv(after errors)pv"""
+}
+=========nesl

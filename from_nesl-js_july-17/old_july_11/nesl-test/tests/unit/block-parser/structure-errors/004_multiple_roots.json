@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "multiple_roots",
+      "message": "Only one root object allowed per block",
+      "content": "{",
+      "context": "  first = R\"\"\"pv(object one)pv\"\"\"\n}\n{\n  second = R\"\"\"pv(object two)pv\"\"\"\n}"
+    }
+  ]
+}

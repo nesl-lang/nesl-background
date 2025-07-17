@@ -1,0 +1,21 @@
+<<<<<<<<<nesl
+{
+  empty = ()
+  only_blank_lines = (
+    
+    
+  )
+  only_whitespace = (
+        
+    	
+      
+  )
+  mixed_empty_whitespace = (
+    
+    R"""pv()pv"""
+        
+    R"""pv()pv"""
+    	
+  )
+}
+=========nesl

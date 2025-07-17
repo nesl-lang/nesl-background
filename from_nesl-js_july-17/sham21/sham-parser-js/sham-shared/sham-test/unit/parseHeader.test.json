@@ -1,0 +1,72 @@
+{
+  "function": "parseHeader",
+  "groups": [
+    {
+      "name": "valid",
+      "tests": [
+        {
+          "name": "simple-header",
+          "input": ["#!SHAM [@three-char-SHA-256: abc]"],
+          "expected": {
+            "isValid": true,
+            "blockId": "abc"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid",
+      "tests": [
+        {
+          "name": "no-brackets",
+          "input": ["#!SHAM abc"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "missing-at-sign",
+          "input": ["#!SHAM [three-char-SHA-256: abc]"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "wrong-keyword",
+          "input": ["#!SHAM [@different-format: abc]"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "lowercase-sham",
+          "input": ["#!sham [@three-char-SHA-256: abc]"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "extra-spaces",
+          "input": ["#!SHAM  [@three-char-SHA-256: abc]"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "trailing-text",
+          "input": ["#!SHAM [@three-char-SHA-256: abc] extra"],
+          "expected": {
+            "isValid": false
+          }
+        },
+        {
+          "name": "no-space-after-colon",
+          "input": ["#!SHAM [@three-char-SHA-256:abc]"],
+          "expected": {
+            "isValid": false
+          }
+        }
+      ]
+    }
+  ]
+}

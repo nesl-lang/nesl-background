@@ -1,0 +1,24 @@
+<<<<<<<<<nesl
+{
+  user = {
+    name = R"""pv(Alice)pv"""
+    profile = {
+      age = R"""pv(30)pv"""
+      location = {
+        city = R"""pv(Wonderland)pv"""
+        country = R"""pv(Fiction)pv"""
+      }
+    }
+  }
+  config = {
+    database = {
+      host = R"""pv(localhost)pv"""
+      port = R"""pv(5432)pv"""
+      credentials = {
+        user = R"""pv(admin)pv"""
+        pass = R"""pv(secret)pv"""
+      }
+    }
+  }
+}
+=========nesl

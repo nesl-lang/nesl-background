@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  good_key = R"""pv(valid)pv"""
+  bad key = R"""pv(space in key)pv"""
+  another = R"""pv(ok)pv"""
+}
+=========nesl

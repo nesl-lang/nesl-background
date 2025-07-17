@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_context",
+      "message": "Array element syntax not allowed in object context",
+      "content": "  - R\"\"\"pv(not allowed)pv\"\"\"",
+      "context": "  key = R\"\"\"pv(valid)pv\"\"\"\n  - R\"\"\"pv(not allowed)pv\"\"\"\n  another = R\"\"\"pv(ok)pv\"\"\""
+    }
+  ]
+}

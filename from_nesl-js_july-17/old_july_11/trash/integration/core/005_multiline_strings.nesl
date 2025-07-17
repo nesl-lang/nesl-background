@@ -1,0 +1,23 @@
+<<<<<<<<<nesl
+{
+  poem = (
+    R"""pv(Roses are red)pv"""
+    R"""pv(Violets are blue)pv"""
+    R"""pv(NESL is great)pv"""
+    R"""pv(And so are you)pv"""
+  )
+  single_line_multi = (
+    R"""pv(just one line in multiline block)pv"""
+  )
+  with_empty_strings = (
+    R"""pv(first line)pv"""
+    R"""pv()pv"""
+    R"""pv(third line)pv"""
+  )
+  indented = (
+    R"""pv(    four spaces)pv"""
+    R"""pv(  two spaces)pv"""
+    R"""pv(      six spaces)pv"""
+  )
+}
+=========nesl

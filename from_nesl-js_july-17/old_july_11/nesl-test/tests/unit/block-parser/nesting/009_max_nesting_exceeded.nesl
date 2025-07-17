@@ -1,0 +1,10 @@
+<<<<<<<<<nesl
+{
+  note = R"""pv(This would need 101 levels to trigger max_depth_exceeded)pv"""
+  deep = {
+    nested = {
+      structure = R"""pv(Parser should track depth via context stack)pv"""
+    }
+  }
+}
+=========nesl

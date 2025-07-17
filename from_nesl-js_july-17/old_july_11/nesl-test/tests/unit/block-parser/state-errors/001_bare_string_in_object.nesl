@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  valid = R"""pv(properly assigned)pv"""
+  R"""pv(this string has no key assignment)pv"""
+  another = R"""pv(valid again)pv"""
+}
+=========nesl

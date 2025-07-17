@@ -1,0 +1,12 @@
+[
+  {
+    "empty_object": {},
+    "empty_array": [],
+    "empty_multiline": "",
+    "nested_empties": {
+      "obj": {},
+      "arr": [],
+      "ml": ""
+    }
+  }
+]

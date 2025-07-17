@@ -1,0 +1,9 @@
+{
+  "blocks": [
+    {
+      "content": "{\n  start_marker = R\"\"\"pv(contains <<<<<<<<<nesl in text)pv\"\"\"\n  end_marker = R\"\"\"pv(has =========nesl inside)pv\"\"\"\n  both = R\"\"\"pv(<<<<<<<<<nesl and =========nesl together)pv\"\"\"\n}",
+      "startLine": 1
+    }
+  ],
+  "errors": []
+}

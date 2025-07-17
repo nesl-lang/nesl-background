@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (whitespace)",
+      "content": "  bad key = R\"\"\"pv(space in key)pv\"\"\"",
+      "context": "  good_key = R\"\"\"pv(valid)pv\"\"\"\n  bad key = R\"\"\"pv(space in key)pv\"\"\"\n  another = R\"\"\"pv(ok)pv\"\"\""
+    }
+  ]
+}

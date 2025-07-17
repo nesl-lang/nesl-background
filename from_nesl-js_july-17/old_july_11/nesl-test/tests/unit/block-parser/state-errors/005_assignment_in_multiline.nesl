@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  text = (
+    R"""pv(valid)pv"""
+    key = R"""pv(no assignments here)pv"""
+    R"""pv(valid)pv"""
+  )
+}
+=========nesl

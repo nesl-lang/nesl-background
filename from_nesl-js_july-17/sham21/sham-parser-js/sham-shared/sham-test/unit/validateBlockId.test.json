@@ -1,0 +1,109 @@
+{
+  "function": "validateBlockId",
+  "groups": [
+    {
+      "name": "valid-ids",
+      "tests": [
+        {
+          "name": "alphanumeric",
+          "input": ["abc"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "uppercase-ok",
+          "input": ["XYZ"],
+          "expected": { "valid": true }
+        }
+      ]
+    },
+    {
+      "name": "invalid-length",
+      "tests": [
+        {
+          "name": "too-short",
+          "input": ["ab"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must be exactly 3 characters"
+          }
+        },
+        {
+          "name": "too-long",
+          "input": ["abcd"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must be exactly 3 characters"
+          }
+        },
+        {
+          "name": "single-char",
+          "input": ["a"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must be exactly 3 characters"
+          }
+        },
+        {
+          "name": "empty-id",
+          "input": [""],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must be exactly 3 characters"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid-characters",
+      "tests": [
+        {
+          "name": "with-hyphen",
+          "input": ["a-b"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must contain only alphanumeric characters"
+          }
+        },
+        {
+          "name": "with-underscore",
+          "input": ["a_b"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must contain only alphanumeric characters"
+          }
+        },
+        {
+          "name": "with-space",
+          "input": ["a b"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must contain only alphanumeric characters"
+          }
+        },
+        {
+          "name": "unicode-chars",
+          "input": ["αβγ"],
+          "expected": {
+            "valid": false,
+            "error": "Block ID must contain only alphanumeric characters"
+          }
+        }
+      ]
+    },
+    {
+      "name": "mixed-case",
+      "tests": [
+        {
+          "name": "mixed-case-valid",
+          "input": ["aB9"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "all-digits",
+          "input": ["123"],
+          "expected": { "valid": true }
+        }
+      ]
+    }
+  ]
+}

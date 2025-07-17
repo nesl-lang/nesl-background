@@ -1,0 +1,13 @@
+<<<START>>>
+{
+  key = R"""pv(custom markers)pv"""
+}
+===END===
+
+Text between
+
+<<<START>>>
+[
+  - R"""pv(second block)pv"""
+]
+===END===

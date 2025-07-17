@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  first = R"""pv(object one)pv"""
+}
+{
+  second = R"""pv(object two)pv"""
+}
+=========nesl

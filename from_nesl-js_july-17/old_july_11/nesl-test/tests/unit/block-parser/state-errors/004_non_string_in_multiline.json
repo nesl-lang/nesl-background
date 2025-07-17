@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "Only string literals allowed in multiline context",
+      "content": "    {",
+      "context": "  text = (\n    R\"\"\"pv(valid string)pv\"\"\"\n    {\n    R\"\"\"pv(another string)pv\"\"\"\n  )"
+    }
+  ]
+}

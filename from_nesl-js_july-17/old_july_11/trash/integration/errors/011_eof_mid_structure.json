@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 6,
+      "code": "eof_unexpected",
+      "message": "Unexpected end of file (expected closing delimiter for object)",
+      "content": "",
+      "context": "  nested = {\n    item = R\"\"\"pv(incomplete)pv\"\"\"\n"
+    }
+  ]
+}

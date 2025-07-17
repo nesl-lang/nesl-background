@@ -1,0 +1,32 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (whitespace)",
+      "content": "  bad key = R\"\"\"pv(space in key)pv\"\"\"",
+      "context": "  valid1 = R\"\"\"pv(before errors)pv\"\"\"\n  bad key = R\"\"\"pv(space in key)pv\"\"\"\n  R\"\"\"pv(orphan string)pv\"\"\""
+    },
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "String literal not allowed without assignment in object context",
+      "content": "  R\"\"\"pv(orphan string)pv\"\"\"",
+      "context": "  bad key = R\"\"\"pv(space in key)pv\"\"\"\n  R\"\"\"pv(orphan string)pv\"\"\"\n  unterminated = R\"\"\"pv(missing end"
+    },
+    {
+      "line": 6,
+      "code": "string_unterminated",
+      "message": "String literal starting with R\"\"\"pv( was not closed with )pv\"\"\" on the same line",
+      "content": "  unterminated = R\"\"\"pv(missing end",
+      "context": "  R\"\"\"pv(orphan string)pv\"\"\"\n  unterminated = R\"\"\"pv(missing end\n  content_after = R\"\"\"pv(ok)pv\"\"\" extra stuff"
+    },
+    {
+      "line": 7,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  content_after = R\"\"\"pv(ok)pv\"\"\" extra stuff",
+      "context": "  unterminated = R\"\"\"pv(missing end\n  content_after = R\"\"\"pv(ok)pv\"\"\" extra stuff\n  valid2 = R\"\"\"pv(after errors)pv\"\"\""
+    }
+  ]
+}

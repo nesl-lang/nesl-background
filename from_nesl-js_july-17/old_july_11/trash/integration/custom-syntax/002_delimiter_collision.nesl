@@ -1,0 +1,7 @@
+<<<START>>>
+{
+  normal = %%%[simple text]%%%
+  contains_delimiter = %%%[has ]%%% in middle]%%%
+  multiple = %%%[text ]%%% more ]%%% end]%%%
+}
+===END===

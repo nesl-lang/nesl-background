@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 2,
+      "code": "root_must_be_object",
+      "message": "NESL blocks must contain a single root object. Found assignment instead",
+      "content": "key = R\"\"\"pv(value)pv\"\"\"",
+      "context": "<<<<<<<<<nesl\nkey = R\"\"\"pv(value)pv\"\"\"\n}\n=========nesl"
+    }
+  ]
+}

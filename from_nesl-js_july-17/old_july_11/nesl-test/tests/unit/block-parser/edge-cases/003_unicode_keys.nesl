@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  café = R"""pv(coffee)pv"""
+  日本語 = R"""pv(Japanese)pv"""
+  🚀 = R"""pv(rocket)pv"""
+}
+=========nesl

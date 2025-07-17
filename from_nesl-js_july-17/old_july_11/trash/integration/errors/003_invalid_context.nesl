@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  arr = [
+    - R"""pv(valid item)pv"""
+    invalid = R"""pv(assignment in array)pv"""
+    - R"""pv(another item)pv"""
+  ]
+}
+=========nesl

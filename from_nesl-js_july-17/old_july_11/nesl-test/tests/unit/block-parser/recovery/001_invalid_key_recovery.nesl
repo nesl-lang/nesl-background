@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  valid1 = R"""pv(before error)pv"""
+  bad key = R"""pv(space in key)pv"""
+  valid2 = R"""pv(after error)pv"""
+  key=bad = R"""pv(equals in key)pv"""
+  valid3 = R"""pv(continues parsing)pv"""
+}
+=========nesl

@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  items = [
+    -R"""pv(no space)pv"""
+    -    R"""pv(multiple spaces)pv"""
+    - R"""pv(single space)pv"""
+  ]
+}
+=========nesl

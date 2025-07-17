@@ -1,0 +1,45 @@
+<<<<<<<<<nesl
+{
+  data = [
+    - {
+      id = R"""pv(1)pv"""
+      items = [
+        - R"""pv(item1)pv"""
+        - R"""pv(item2)pv"""
+      ]
+      description = (
+        R"""pv(First object)pv"""
+        R"""pv(with multiline)pv"""
+      )
+    }
+    - {
+      id = R"""pv(2)pv"""
+      nested = {
+        array_in_object = [
+          - {
+            deep = R"""pv(value)pv"""
+          }
+        ]
+      }
+    }
+  ]
+  complex = {
+    users = [
+      - {
+        name = R"""pv(Alice)pv"""
+        roles = [
+          - R"""pv(admin)pv"""
+          - R"""pv(user)pv"""
+        ]
+      }
+      - {
+        name = R"""pv(Bob)pv"""
+        bio = (
+          R"""pv(Software engineer)pv"""
+          R"""pv(Coffee enthusiast)pv"""
+        )
+      }
+    ]
+  }
+}
+=========nesl

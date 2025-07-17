@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 3,
+      "code": "key_too_long",
+      "message": "Key exceeds maximum length of 256 characters",
+      "content": "  abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678 = R\"\"\"pv(257 chars)pv\"\"\"",
+      "context": "<<<<<<<<<nesl\n{\n  abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678 = R\"\"\"pv(257 chars)pv\"\"\"\n}\n=========nesl"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<<<<<<<<<nesl
+{
+  name = R"""pv(test object)pv"""
+  nested = {
+    inner = R"""pv(nested value)pv"""
+  }
+  list = [
+    - R"""pv(item)pv"""
+  ]
+  multi = (
+    R"""pv(first)pv"""
+    R"""pv(second)pv"""
+  )
+}
+=========nesl

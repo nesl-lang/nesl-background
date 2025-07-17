@@ -1,0 +1,22 @@
+{
+  "name": "sham-parser-js",
+  "version": "0.1.0",
+  "description": "JavaScript parser for SHAM format",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run generate:patterns",
+    "build": "tsc",
+    "generate:patterns": "node scripts/generate-patterns.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "marked": "^16.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

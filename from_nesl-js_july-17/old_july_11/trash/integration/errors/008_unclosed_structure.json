@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 7,
+      "code": "unclosed_structure",
+      "message": "Expected } but found =========nesl (unclosed object)",
+      "content": "=========nesl",
+      "context": "      item = R\"\"\"pv(never closed)pv\"\"\"\n}\n=========nesl"
+    }
+  ]
+}

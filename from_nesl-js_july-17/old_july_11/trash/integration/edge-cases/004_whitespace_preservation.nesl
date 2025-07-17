@@ -1,0 +1,18 @@
+<<<<<<<<<nesl
+{
+  tabs = R"""pv(	start	middle	end	)pv"""
+  spaces = R"""pv(    four spaces)pv"""
+  mixed = R"""pv( 	mix of  spaces		and tabs	 )pv"""
+  newline_escape = R"""pv(has\nnewline)pv"""
+  carriage_return = R"""pv(has\rcarriage)pv"""
+  vertical_tab = R"""pv(has\vvertical)pv"""
+  multiline_indent = (
+    R"""pv(    line 1)pv"""
+    R"""pv(  line 2)pv"""
+    R"""pv(      line 3)pv"""
+    R"""pv(	tab line)pv"""
+  )
+  trailing = R"""pv(trailing spaces    )pv"""
+  only_spaces = R"""pv(     )pv"""
+}
+=========nesl

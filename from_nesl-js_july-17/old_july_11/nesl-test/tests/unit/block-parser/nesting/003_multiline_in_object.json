@@ -1,0 +1,8 @@
+[
+  {
+    "description": "line 1\nline 2",
+    "nested": {
+      "text": "nested multiline"
+    }
+  }
+]

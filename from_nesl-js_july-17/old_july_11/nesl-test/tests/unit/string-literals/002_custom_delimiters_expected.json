@@ -1,0 +1,17 @@
+{
+  "config": {
+    "stringOpen": "%%%[",
+    "stringClose": "]%%%"
+  },
+  "results": [
+    {"value": "simple"},
+    {"value": "empty"},
+    {"value": "contains ]%%% in middle"},
+    {"error": "invalid_string_start"},
+    {"error": "content_after_string"},
+    {"value": "first]%%% %%%[second"},
+    {"error": "string_unterminated"},
+    {"error": "content_after_string"},
+    {"error": "string_not_found"}
+  ]
+}

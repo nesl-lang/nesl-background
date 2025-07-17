@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  multiline = (
+    R"""pv(first line)pv"""
+    {
+    R"""pv(second line)pv"""
+  )
+}
+=========nesl

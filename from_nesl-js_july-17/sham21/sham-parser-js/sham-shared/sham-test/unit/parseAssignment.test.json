@@ -1,0 +1,188 @@
+{
+  "function": "parseAssignment",
+  "groups": [
+    {
+      "name": "valid-quoted",
+      "tests": [
+        {
+          "name": "standard-quoted",
+          "input": ["key = \"value\""],
+          "expected": {
+            "success": true,
+            "type": "key-value",
+            "key": "key",
+            "value": "value"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid-operator",
+      "tests": [
+        {
+          "name": "colon-equals",
+          "input": ["key := \"value\""],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "INVALID_OPERATOR",
+              "position": 4,
+              "length": 2
+            }
+          }
+        },
+        {
+          "name": "arrow-operator",
+          "input": ["key => \"value\""],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "INVALID_VALUE",
+              "position": 4,
+              "length": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "heredoc-assignments",
+      "tests": [
+        {
+          "name": "valid-heredoc",
+          "input": ["content = <<'EOT_SHAM_abc'"],
+          "expected": {
+            "success": true,
+            "type": "heredoc",
+            "key": "content",
+            "delimiter": "EOT_SHAM_abc"
+          }
+        },
+        {
+          "name": "heredoc-no-quotes",
+          "input": ["content = <<EOT_SHAM_abc"],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "INVALID_VALUE",
+              "position": 10,
+              "length": 14
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty-values",
+      "tests": [
+        {
+          "name": "empty-quoted",
+          "input": ["key = \"\""],
+          "expected": {
+            "success": true,
+            "type": "key-value",
+            "key": "key",
+            "value": ""
+          }
+        },
+        {
+          "name": "no-value",
+          "input": ["key = "],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "INVALID_VALUE",
+              "position": 6,
+              "length": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "quote-handling",
+      "tests": [
+        {
+          "name": "escaped-quotes",
+          "input": ["msg = \"He said \\\"hello\\\"\""],
+          "expected": {
+            "success": true,
+            "type": "key-value",
+            "key": "msg",
+            "value": "He said \"hello\""
+          }
+        },
+        {
+          "name": "unclosed-quote",
+          "input": ["key = \"unclosed"],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "UNCLOSED_QUOTE",
+              "position": 6,
+              "length": 9
+            }
+          }
+        },
+        {
+          "name": "trailing-content",
+          "input": ["key = \"value\" extra"],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "TRAILING_CONTENT",
+              "position": 14,
+              "length": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "malformed-lines",
+      "tests": [
+        {
+          "name": "no-equals",
+          "input": ["just a key"],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "MALFORMED_ASSIGNMENT",
+              "position": 0,
+              "length": 10
+            }
+          }
+        },
+        {
+          "name": "empty-key",
+          "input": [" = \"value\""],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "EMPTY_KEY",
+              "position": 1,
+              "length": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "newline-handling",
+      "tests": [
+        {
+          "name": "newline-in-string",
+          "input": ["key = \"line1\nline2\""],
+          "expected": {
+            "success": false,
+            "error": {
+              "code": "UNCLOSED_QUOTE",
+              "position": 6,
+              "length": 13
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<<<<<<<<<nesl
+{
+  level1 = {
+    level2 = {
+      level3 = {
+        level4 = {
+          level5 = {
+            level6 = R"""pv(deep value)pv"""
+            array5 = [
+              - [
+                - [
+                  - R"""pv(deep array)pv"""
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    }
+  }
+  mixed_deep = [
+    - {
+      a = [
+        - {
+          b = [
+            - {
+              c = (
+                R"""pv(line 1)pv"""
+                R"""pv(line 2)pv"""
+              )
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+=========nesl

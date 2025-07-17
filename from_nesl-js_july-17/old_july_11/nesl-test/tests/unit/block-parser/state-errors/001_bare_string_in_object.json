@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_context",
+      "message": "String literal not allowed without assignment in object context",
+      "content": "  R\"\"\"pv(this string has no key assignment)pv\"\"\"",
+      "context": "{\n  valid = R\"\"\"pv(properly assigned)pv\"\"\"\n  R\"\"\"pv(this string has no key assignment)pv\"\"\"\n  another = R\"\"\"pv(valid again)pv\"\"\"\n}"
+    }
+  ]
+}

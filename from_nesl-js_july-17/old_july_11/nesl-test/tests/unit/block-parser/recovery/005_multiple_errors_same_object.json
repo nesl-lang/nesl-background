@@ -1,0 +1,32 @@
+{
+  "errors": [
+    {
+      "line": 3,
+      "code": "invalid_context",
+      "message": "String literal not allowed without assignment in object context",
+      "content": "  R\"\"\"pv(bare string)pv\"\"\"",
+      "context": "<<<<<<<<<nesl\n{\n  R\"\"\"pv(bare string)pv\"\"\"\n  - R\"\"\"pv(dash in object)pv\"\"\"\n  empty ="
+    },
+    {
+      "line": 4,
+      "code": "invalid_context",
+      "message": "Array element syntax not allowed in object context",
+      "content": "  - R\"\"\"pv(dash in object)pv\"\"\"",
+      "context": "{\n  R\"\"\"pv(bare string)pv\"\"\"\n  - R\"\"\"pv(dash in object)pv\"\"\"\n  empty =\n  bad key = R\"\"\"pv(space)pv\"\"\""
+    },
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "Assignment requires value on same line",
+      "content": "  empty =",
+      "context": "  R\"\"\"pv(bare string)pv\"\"\"\n  - R\"\"\"pv(dash in object)pv\"\"\"\n  empty =\n  bad key = R\"\"\"pv(space)pv\"\"\"\n  valid = R\"\"\"pv(one valid key)pv\"\"\""
+    },
+    {
+      "line": 6,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (whitespace)",
+      "content": "  bad key = R\"\"\"pv(space)pv\"\"\"",
+      "context": "  - R\"\"\"pv(dash in object)pv\"\"\"\n  empty =\n  bad key = R\"\"\"pv(space)pv\"\"\"\n  valid = R\"\"\"pv(one valid key)pv\"\"\"\n}"
+    }
+  ]
+}

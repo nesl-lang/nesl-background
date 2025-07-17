@@ -1,0 +1,25 @@
+<<<<<<<<<nesl
+{
+  first = R"""pv(block)pv"""
+}
+=========nesl
+
+Random text
+Multiple lines
+Between blocks
+
+<<<<<<<<<nesl
+[
+  - R"""pv(second block)pv"""
+]
+=========nesl
+
+More text after
+
+<<<<<<<<<nesl
+{
+  third = {
+    nested = R"""pv(value)pv"""
+  }
+}
+=========nesl

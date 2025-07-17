@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  valid = R"""pv(has value)pv"""
+  empty =
+  another = R"""pv(also valid)pv"""
+}
+=========nesl

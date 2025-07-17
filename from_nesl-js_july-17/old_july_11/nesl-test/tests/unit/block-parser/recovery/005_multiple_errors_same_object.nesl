@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  R"""pv(bare string)pv"""
+  - R"""pv(dash in object)pv"""
+  empty =
+  bad key = R"""pv(space)pv"""
+  valid = R"""pv(one valid key)pv"""
+}
+=========nesl

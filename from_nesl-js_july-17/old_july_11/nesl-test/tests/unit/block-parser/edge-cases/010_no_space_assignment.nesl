@@ -1,0 +1,6 @@
+<<<<<<<<<nesl
+{
+  key=R"""pv(value)pv"""
+  another=R"""pv(test)pv"""
+}
+=========nesl

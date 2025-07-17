@@ -1,0 +1,94 @@
+{
+  "function": "findInvalidCharPosition",
+  "groups": [
+    {
+      "name": "valid-cases",
+      "tests": [
+        {
+          "name": "simple-key",
+          "input": ["hello_world"],
+          "expected": null
+        }
+      ]
+    },
+    {
+      "name": "forbidden-unicode",
+      "tests": [
+        {
+          "name": "zero-width-space",
+          "input": ["foo\u200Bbar"],
+          "expected": {
+            "position": 3,
+            "char": "\u200B"
+          }
+        }
+      ]
+    },
+    {
+      "name": "invalid-regular-chars",
+      "tests": [
+        {
+          "name": "space-in-middle",
+          "input": ["key name"],
+          "expected": {
+            "position": 3,
+            "char": " "
+          }
+        },
+        {
+          "name": "hyphen-in-middle",
+          "input": ["key-name"],
+          "expected": {
+            "position": 3,
+            "char": "-"
+          }
+        },
+        {
+          "name": "digit-at-start",
+          "input": ["9key"],
+          "expected": {
+            "position": 0,
+            "char": "9"
+          }
+        },
+        {
+          "name": "special-at-start",
+          "input": ["$key"],
+          "expected": {
+            "position": 0,
+            "char": "$"
+          }
+        },
+        {
+          "name": "emoji-at-start",
+          "input": ["😀key"],
+          "expected": {
+            "position": 0,
+            "char": "😀"
+          }
+        },
+        {
+          "name": "emoji-in-middle",
+          "input": ["key😀name"],
+          "expected": {
+            "position": 3,
+            "char": "😀"
+          }
+        }
+      ]
+    },
+    {
+      "name": "multiple-invalid",
+      "tests": [
+        {
+          "name": "first-of-many",
+          "input": ["key name-value"],
+          "expected": {
+            "position": 3,
+            "char": " "
+          }
+        }
+      ]
+    }
+  ]
+}

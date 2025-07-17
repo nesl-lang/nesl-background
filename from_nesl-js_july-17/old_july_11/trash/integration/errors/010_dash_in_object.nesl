@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  key = R"""pv(valid)pv"""
+  - R"""pv(not allowed)pv"""
+  another = R"""pv(ok)pv"""
+}
+=========nesl

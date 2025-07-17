@@ -1,0 +1,10 @@
+[
+  {
+    "outer": {
+      "inner": "nested value",
+      "deep": {
+        "deeper": "two levels"
+      }
+    }
+  }
+]

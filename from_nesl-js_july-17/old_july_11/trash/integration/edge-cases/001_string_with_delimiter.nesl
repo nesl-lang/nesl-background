@@ -1,0 +1,10 @@
+<<<<<<<<<nesl
+{
+  simple = R"""pv(contains )pv""" in the middle)pv"""
+  multiple = R"""pv(has )pv""" and also R"""pv( patterns)pv"""
+  at_start = R"""pv()pv""" at the beginning)pv"""
+  at_end = R"""pv(ends with )pv""")pv"""
+  nested_looking = R"""pv(R"""pv(not actually nested)pv""")pv"""
+  tricky = R"""pv(multiple )pv""" and )pv""" and even )pv""" patterns)pv"""
+}
+=========nesl

@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  items = [
+    - R"""pv(valid)pv"""
+    key = R"""pv(invalid assignment)pv"""
+    - R"""pv(valid)pv"""
+  ]
+}
+=========nesl

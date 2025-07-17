@@ -1,0 +1,8 @@
+Some initial text
+
+{
+  key = R"""pv(looks like NESL but no opening marker)pv"""
+}
+=========nesl
+
+This should error

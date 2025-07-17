@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_context", 
+      "message": "Assignment requires value on same line",
+      "content": "  empty =",
+      "context": "{\n  valid = R\"\"\"pv(has value)pv\"\"\"\n  empty =\n  another = R\"\"\"pv(also valid)pv\"\"\"\n}"
+    }
+  ]
+}

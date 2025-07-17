@@ -1,0 +1,18 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (whitespace)",
+      "content": "  bad key = R\"\"\"pv(space in key)pv\"\"\"",
+      "context": "{\n  valid1 = R\"\"\"pv(before error)pv\"\"\"\n  bad key = R\"\"\"pv(space in key)pv\"\"\"\n  valid2 = R\"\"\"pv(after error)pv\"\"\"\n  key=bad = R\"\"\"pv(equals in key)pv\"\"\""
+    },
+    {
+      "line": 6,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (equals sign)",
+      "content": "  key=bad = R\"\"\"pv(equals in key)pv\"\"\"",
+      "context": "  bad key = R\"\"\"pv(space in key)pv\"\"\"\n  valid2 = R\"\"\"pv(after error)pv\"\"\"\n  key=bad = R\"\"\"pv(equals in key)pv\"\"\"\n  valid3 = R\"\"\"pv(continues parsing)pv\"\"\"\n}"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<<<<<<<<<nesl
+{
+  outer = {
+    inner = R"""pv(nested value)pv"""
+    deep = {
+      deeper = R"""pv(two levels)pv"""
+    }
+  }
+}
+=========nesl

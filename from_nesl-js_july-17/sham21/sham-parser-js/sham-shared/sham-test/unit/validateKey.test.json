@@ -1,0 +1,148 @@
+{
+  "function": "validateKey",
+  "groups": [
+    {
+      "name": "valid-keys",
+      "tests": [
+        {
+          "name": "basic-underscore",
+          "input": ["_key"],
+          "expected": { "valid": true }
+        }
+      ]
+    },
+    {
+      "name": "invalid-start-char",
+      "tests": [
+        {
+          "name": "starts-with-digit",
+          "input": ["9bad"],
+          "expected": {
+            "valid": false,
+            "error": "Key must start with letter or underscore"
+          }
+        },
+        {
+          "name": "starts-with-space",
+          "input": [" key"],
+          "expected": {
+            "valid": false,
+            "error": "Key must start with letter or underscore"
+          }
+        },
+        {
+          "name": "starts-with-hyphen",
+          "input": ["-key"],
+          "expected": {
+            "valid": false,
+            "error": "Key must start with letter or underscore"
+          }
+        }
+      ]
+    },
+    {
+      "name": "unicode-keys",
+      "tests": [
+        {
+          "name": "greek-letters",
+          "input": ["αβγ"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "chinese-chars",
+          "input": ["中文变量"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "emoji-invalid",
+          "input": ["😀key"],
+          "expected": {
+            "valid": false,
+            "error": "Key must start with letter or underscore"
+          }
+        },
+        {
+          "name": "emoji-in-middle",
+          "input": ["key😀name"],
+          "expected": {
+            "valid": false,
+            "error": "Key contains invalid characters"
+          }
+        },
+        {
+          "name": "mathematical-alphanumeric",
+          "input": ["𝐀𝐁𝐂"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "arabic-valid",
+          "input": ["متغير"],
+          "expected": { "valid": true }
+        }
+      ]
+    },
+    {
+      "name": "length-boundaries",
+      "tests": [
+        {
+          "name": "exactly-256-chars",
+          "input": ["k_56789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345123"],
+          "expected": { "valid": true }
+        },
+        {
+          "name": "257-chars-too-long",
+          "input": ["k_567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123451234"],
+          "expected": {
+            "valid": false,
+            "error": "Key exceeds 256 character limit"
+          }
+        },
+        {
+          "name": "empty-key",
+          "input": [""],
+          "expected": {
+            "valid": false,
+            "error": "Key cannot be empty"
+          }
+        }
+      ]
+    },
+    {
+      "name": "forbidden-characters",
+      "tests": [
+        {
+          "name": "contains-space",
+          "input": ["key name"],
+          "expected": {
+            "valid": false,
+            "error": "Key contains invalid characters"
+          }
+        },
+        {
+          "name": "contains-tab",
+          "input": ["key\tname"],
+          "expected": {
+            "valid": false,
+            "error": "Key contains invalid characters"
+          }
+        },
+        {
+          "name": "zero-width-space",
+          "input": ["key​name"],
+          "expected": {
+            "valid": false,
+            "error": "Key contains invalid characters"
+          }
+        },
+        {
+          "name": "control-char",
+          "input": ["key\u0001name"],
+          "expected": {
+            "valid": false,
+            "error": "Key contains invalid characters"
+          }
+        }
+      ]
+    }
+  ]
+}

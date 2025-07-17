@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 2,
+      "code": "root_must_be_object",
+      "message": "NESL blocks must contain a single root object. Found array element instead",
+      "content": "- R\"\"\"pv(dash not allowed at root)pv\"\"\"",
+      "context": "<<<<<<<<<nesl\n- R\"\"\"pv(dash not allowed at root)pv\"\"\"\n=========nesl"
+    }
+  ]
+}

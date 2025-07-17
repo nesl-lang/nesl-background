@@ -1,0 +1,17 @@
+{
+  "config": {
+    "blockStart": "<<<START>>>",
+    "blockEnd": "===END==="
+  },
+  "blocks": [
+    {
+      "content": "{\n  key = R\"\"\"pv(custom markers)pv\"\"\"\n}",
+      "startLine": 1
+    },
+    {
+      "content": "[\n  - R\"\"\"pv(second block)pv\"\"\"\n]",
+      "startLine": 9
+    }
+  ],
+  "errors": []
+}

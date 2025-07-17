@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  multiple_markers = R"""pv(first)pv""" R"""pv(second)pv"""
+  triple = R"""pv(one)pv""" R"""pv(two)pv""" R"""pv(three)pv"""
+  nested_appearance = R"""pv(has R"""pv(fake)pv""" inside)pv"""
+  many_endings = R"""pv(text)pv""")pv""")pv""")pv"""
+}
+=========nesl

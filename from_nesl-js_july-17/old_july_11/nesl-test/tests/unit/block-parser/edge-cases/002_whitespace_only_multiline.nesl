@@ -1,0 +1,11 @@
+<<<<<<<<<nesl
+{
+  text = (
+    R"""pv(line 1)pv"""
+    
+    R"""pv(line 2)pv"""
+        
+    R"""pv(line 3)pv"""
+  )
+}
+=========nesl

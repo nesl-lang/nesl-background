@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  nested = {
+    key = R"""pv(value)pv"""
+    deep = {
+      item = R"""pv(never closed)pv"""
+}
+=========nesl

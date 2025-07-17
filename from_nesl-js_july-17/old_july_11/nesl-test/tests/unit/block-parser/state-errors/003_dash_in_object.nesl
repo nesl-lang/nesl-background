@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  valid = R"""pv(ok)pv"""
+  - R"""pv(dash not allowed)pv"""
+  another = R"""pv(ok)pv"""
+}
+=========nesl

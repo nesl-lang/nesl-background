@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  good = R"""pv(normal string)pv"""
+  bad = R"""pv(string)pv""" extra content here
+  another = R"""pv(ok)pv"""
+}
+=========nesl

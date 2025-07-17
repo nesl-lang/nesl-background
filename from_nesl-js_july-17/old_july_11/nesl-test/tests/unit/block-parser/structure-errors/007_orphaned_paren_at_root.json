@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 2,
+      "code": "root_must_be_object",
+      "message": "NESL blocks must contain a single root object. Found ) instead",
+      "content": ")",
+      "context": "<<<<<<<<<nesl\n)\n=========nesl"
+    }
+  ]
+}

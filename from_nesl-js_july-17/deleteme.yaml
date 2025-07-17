@@ -1,0 +1,50 @@
+# SHAM Parser Test Suite
+test_manifest:
+  - "001-empty-file"
+  - "002-single-block-basic"
+  - "003-empty-block"
+
+tests:
+  001-empty-file:
+    input: | # sham
+      
+    expected: | # json
+      {
+        "blocks": [],
+        "errors": []
+      }
+
+ 002-single-block-basic:
+   input: | # sham
+     #!SHAM [@three-char-SHA-256: abc]
+     path = "/tmp/test.txt"
+     name = "example"
+     #!END_SHAM_abc
+   expected: | # json
+     {
+       "blocks": [{
+         "id": "abc",
+         "properties": {
+           "path": "/tmp/test.txt",
+           "name": "example"
+         },
+         "startLine": 1,
+         "endLine": 4
+       }],
+       "errors": []
+     }
+
+ 003-empty-block:
+   input: | # sham
+     #!SHAM [@three-char-SHA-256: xyz]
+     #!END_SHAM_xyz
+   expected: | # json
+     {
+       "blocks": [{
+         "id": "xyz",
+         "properties": {},
+         "startLine": 1,
+         "endLine": 2
+       }],
+       "errors": []
+     }

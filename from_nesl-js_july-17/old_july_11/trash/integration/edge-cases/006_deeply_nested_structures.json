@@ -1,0 +1,35 @@
+[
+  {
+    "level1": {
+      "level2": {
+        "level3": {
+          "level4": {
+            "level5": {
+              "level6": "deep value",
+              "array5": [
+                [
+                  [
+                    "deep array"
+                  ]
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "mixed_deep": [
+      {
+        "a": [
+          {
+            "b": [
+              {
+                "c": "line 1\nline 2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

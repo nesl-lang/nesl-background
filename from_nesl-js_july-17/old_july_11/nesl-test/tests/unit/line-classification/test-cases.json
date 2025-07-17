@@ -1,0 +1,51 @@
+{
+  "structural_delimiters_exact_match_only": [
+    { "input": "{", "expected": { "type": "object_start" } },
+    { "input": "  {  ", "expected": { "type": "object_start" } },
+    { "input": "{x", "expected": { "type": "unknown", "line": "{x" } },
+    { "input": "{}", "expected": { "type": "unknown", "line": "{}" } },
+    { "input": "}", "expected": { "type": "object_end" } },
+    { "input": "  }  ", "expected": { "type": "object_end" } },
+    { "input": "[", "expected": { "type": "array_start" } },
+    { "input": " [ ", "expected": { "type": "array_start" } },
+    { "input": "]", "expected": { "type": "array_end" } },
+    { "input": "  ]", "expected": { "type": "array_end" } },
+    { "input": "(", "expected": { "type": "multiline_start" } },
+    { "input": "  (  ", "expected": { "type": "multiline_start" } }
+    
+    ,
+    { "input": ")", "expected": { "type": "multiline_end" } },
+    { "input": ")  ", "expected": { "type": "multiline_end" } }
+  ],
+  "assignment_requires_non_empty_key": [
+    { "input": "key = value", "expected": { "type": "assignment", "key": "key", "rest": " value" } },
+    { "input": "key=value", "expected": { "type": "assignment", "key": "key", "rest": "value" } },
+    { "input": "key = ", "expected": { "type": "assignment", "key": "key", "rest": " " } },
+    { "input": "key=", "expected": { "type": "assignment", "key": "key", "rest": "" } },
+    { "input": "=value", "expected": { "type": "unknown", "line": "=value" } },
+    { "input": " = ", "expected": { "type": "unknown", "line": " = " } },
+    { "input": "key with spaces = val", "expected": { "type": "assignment", "key": "key with spaces", "rest": " val" } },
+    { "input": "key=with=equals", "expected": { "type": "assignment", "key": "key", "rest": "with=equals" } },
+    { "input": "  indented = yes  ", "expected": { "type": "assignment", "key": "indented", "rest": " yes  " } }
+  ],
+  "array_elements_dash_first_non_whitespace": [
+    { "input": "- value", "expected": { "type": "array_element", "rest": " value" } },
+    { "input": "-value", "expected": { "type": "array_element", "rest": "value" } },
+    { "input": "  - value", "expected": { "type": "array_element", "rest": " value" } },
+    { "input": "-", "expected": { "type": "array_element", "rest": "" } },
+    { "input": "a- value", "expected": { "type": "unknown", "line": "a- value" } },
+    { "input": "--double", "expected": { "type": "array_element", "rest": "-double" } },
+    { "input": " -  ", "expected": { "type": "array_element", "rest": "  " } }
+  ],
+  "blank_lines": [
+    { "input": "", "expected": { "type": "blank" } },
+    { "input": " ", "expected": { "type": "blank" } },
+    { "input": "\t", "expected": { "type": "blank" } },
+    { "input": "  \t  ", "expected": { "type": "blank" } }
+  ],
+  "unknown_everything_else": [
+    { "input": "R\"\"\"pv(test)pv\"\"\"", "expected": { "type": "unknown", "line": "R\"\"\"pv(test)pv\"\"\"" } },
+    { "input": "random text", "expected": { "type": "unknown", "line": "random text" } },
+    { "input": "  string alone  ", "expected": { "type": "unknown", "line": "  string alone  " } }
+  ]
+}

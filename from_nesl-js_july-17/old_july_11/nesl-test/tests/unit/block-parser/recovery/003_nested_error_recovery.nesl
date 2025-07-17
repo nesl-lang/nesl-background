@@ -1,0 +1,11 @@
+<<<<<<<<<nesl
+{
+  before = R"""pv(ok)pv"""
+  nested = {
+    valid = R"""pv(inside)pv"""
+    bad key = R"""pv(error)pv"""
+    after = R"""pv(continues)pv"""
+  }
+  outside = R"""pv(parent continues)pv"""
+}
+=========nesl

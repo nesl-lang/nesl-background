@@ -1,0 +1,10 @@
+[
+  {
+    "name": "test object",
+    "nested": {
+      "inner": "nested value"
+    },
+    "list": ["item"],
+    "multi": "first\nsecond"
+  }
+]

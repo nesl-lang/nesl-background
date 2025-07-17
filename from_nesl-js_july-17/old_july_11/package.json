@@ -1,0 +1,58 @@
+{
+  "name": "nesl-js",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript parser for NESL (NEsted String Literal) format",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "git-update-remote": "git submodule update --remote --merge",
+    "OLDtest:setup": "git submodule update --init --recursive",
+    "test:setup": "git submodule update --remote --force --checkout",
+    "test": "npm run test:setup && vitest run",
+    "OLDtest": "npm run test:setup && vitest",
+    "test:run": "npm run test:setup && vitest run",
+    "test:coverage": "npm run test:setup && vitest run --coverage",
+    "dev": "npm run test:setup && vitest --watch",
+    "clean": "rm -rf dist coverage",
+    "prepublishOnly": "npm run clean && npm run build && npm run test:run",
+    "replacer": "pipx run https://raw.githubusercontent.com/stuartcrobinson/replacer/main/replacer/replacer.py"
+  },
+  "keywords": [
+    "nesl",
+    "parser",
+    "config",
+    "llm"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nesl-lang/nesl-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nesl-lang/nesl-js/issues"
+  },
+  "homepage": "https://github.com/nesl-lang/nesl-js#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

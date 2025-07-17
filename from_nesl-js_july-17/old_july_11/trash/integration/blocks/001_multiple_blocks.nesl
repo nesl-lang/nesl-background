@@ -1,0 +1,17 @@
+<<<<<<<<<nesl
+{
+  first = R"""pv(block one)pv"""
+}
+=========nesl
+
+<<<<<<<<<nesl
+{
+  second = R"""pv(block two)pv"""
+}
+=========nesl
+
+<<<<<<<<<nesl
+[
+  - R"""pv(block three)pv"""
+]
+=========nesl

@@ -1,0 +1,10 @@
+[
+  {
+    "simple": "contains )pv\"\"\" in the middle",
+    "multiple": "has )pv\"\"\" and also R\"\"\"pv( patterns",
+    "at_start": ")pv\"\"\" at the beginning",
+    "at_end": "ends with )pv\"\"\"",
+    "nested_looking": "R\"\"\"pv(not actually nested)pv\"\"\"",
+    "tricky": "multiple )pv\"\"\" and )pv\"\"\" and even )pv\"\"\" patterns"
+  }
+]

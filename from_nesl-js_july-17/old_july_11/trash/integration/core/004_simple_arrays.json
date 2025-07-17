@@ -1,0 +1,14 @@
+[
+  {
+    "strings": ["first", "second", "third"],
+    "mixed": [
+      "string value",
+      {
+        "type": "object",
+        "nested": "yes"
+      },
+      ["nested", "array"]
+    ],
+    "single": ["only one"]
+  }
+]

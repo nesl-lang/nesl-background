@@ -1,0 +1,30 @@
+<<<<<<<<<nesl
+{
+  matrix = [
+    - [
+      - R"""pv(1)pv"""
+      - R"""pv(2)pv"""
+      - R"""pv(3)pv"""
+    ]
+    - [
+      - R"""pv(4)pv"""
+      - R"""pv(5)pv"""
+      - R"""pv(6)pv"""
+    ]
+    - [
+      - R"""pv(7)pv"""
+      - R"""pv(8)pv"""
+      - R"""pv(9)pv"""
+    ]
+  ]
+  deeply_nested = [
+    - [
+      - [
+        - [
+          - R"""pv(deep value)pv"""
+        ]
+      ]
+    ]
+  ]
+}
+=========nesl

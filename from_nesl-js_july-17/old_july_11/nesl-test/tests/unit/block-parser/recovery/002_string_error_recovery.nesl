@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  valid1 = R"""pv(ok)pv"""
+  unterminated = R"""pv(missing close
+  valid2 = R"""pv(continues)pv"""
+  extra = R"""pv(ok)pv""" garbage after
+  valid3 = R"""pv(still parsing)pv"""
+}
+=========nesl

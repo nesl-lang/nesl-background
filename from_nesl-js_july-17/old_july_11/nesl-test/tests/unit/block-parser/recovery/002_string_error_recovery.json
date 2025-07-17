@@ -1,0 +1,18 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "string_unterminated",
+      "message": "String literal starting with R\"\"\"pv( was not closed with )pv\"\"\" on the same line",
+      "content": "  unterminated = R\"\"\"pv(missing close",
+      "context": "{\n  valid1 = R\"\"\"pv(ok)pv\"\"\"\n  unterminated = R\"\"\"pv(missing close\n  valid2 = R\"\"\"pv(continues)pv\"\"\"\n  extra = R\"\"\"pv(ok)pv\"\"\" garbage after"
+    },
+    {
+      "line": 6,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  extra = R\"\"\"pv(ok)pv\"\"\" garbage after",
+      "context": "  unterminated = R\"\"\"pv(missing close\n  valid2 = R\"\"\"pv(continues)pv\"\"\"\n  extra = R\"\"\"pv(ok)pv\"\"\" garbage after\n  valid3 = R\"\"\"pv(still parsing)pv\"\"\"\n}"
+    }
+  ]
+}

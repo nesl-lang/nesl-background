@@ -1,0 +1,19 @@
+This text before blocks is ignored
+
+<<<<<<<<<nesl
+{
+  key = R"""pv(value)pv"""
+}
+=========nesl
+
+Random text between blocks
+Multiple lines
+Should all be ignored
+
+<<<<<<<<<nesl
+[
+  - R"""pv(array item)pv"""
+]
+=========nesl
+
+Even text after last block

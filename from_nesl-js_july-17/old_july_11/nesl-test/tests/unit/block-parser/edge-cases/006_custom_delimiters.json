@@ -1,0 +1,14 @@
+{
+  "config": {
+    "blockStart": "<<<START>>>",
+    "blockEnd": "===END===",
+    "stringOpen": "%%%[",
+    "stringClose": "]%%%"
+  },
+  "expected": [
+    {
+      "key": "custom string"
+    }
+  ],
+  "errors": []
+}

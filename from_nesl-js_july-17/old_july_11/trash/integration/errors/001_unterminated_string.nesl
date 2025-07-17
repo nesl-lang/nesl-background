@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  good = R"""pv(this is fine)pv"""
+  bad = R"""pv(this string never ends
+  another = R"""pv(unreachable)pv"""
+}
+=========nesl

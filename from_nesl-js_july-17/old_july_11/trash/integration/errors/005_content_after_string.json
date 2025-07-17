@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "content_after_string",
+      "message": "Non-whitespace content found after string literal closing delimiter",
+      "content": "  bad = R\"\"\"pv(string)pv\"\"\" extra content here",
+      "context": "  good = R\"\"\"pv(normal string)pv\"\"\"\n  bad = R\"\"\"pv(string)pv\"\"\" extra content here\n  another = R\"\"\"pv(ok)pv\"\"\""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<<<<<<<<<nesl
+{
+  items = [
+    - R"""pv(first)pv"""
+    - R"""pv(second)pv"""
+  ]
+  nested = {
+    list = [
+      - R"""pv(inner item)pv"""
+    ]
+  }
+}
+=========nesl

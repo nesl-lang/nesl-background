@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "content_between_closing_and_block_end",
+      "message": "No content allowed between closing delimiter } and =========nesl",
+      "content": "some content here",
+      "context": "}\nsome content here\n=========nesl"
+    }
+  ]
+}

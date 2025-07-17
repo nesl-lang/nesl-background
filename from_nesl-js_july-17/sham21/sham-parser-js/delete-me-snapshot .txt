@@ -1,0 +1,319 @@
+
+=== START FILE: ./tests/file.txt ===
+
+=== START FILE: ./unit/parseHeader.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { parseHeader } from '../../src/parsers/parseHeader';
+import testCases from '../../sham-shared/sham-test/unit/parseHeader.test.json';
+
+describe('parseHeader', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = parseHeader(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/parseHeader.test.ts ===
+
+=== START FILE: ./unit/validateBlockId.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { validateBlockId } from '../../src/validators/validateBlockId';
+import testCases from '../../sham-shared/sham-test/unit/validateBlockId.test.json';
+
+describe('validateBlockId', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = validateBlockId(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/validateBlockId.test.ts ===
+
+=== START FILE: ./unit/findInvalidCharPosition.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { findInvalidCharPosition } from '../../src/validators/findInvalidCharPosition';
+import testCases from '../../sham-shared/sham-test/unit/findInvalidCharPosition.test.json';
+
+describe('findInvalidCharPosition', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = findInvalidCharPosition(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/findInvalidCharPosition.test.ts ===
+
+=== START FILE: ./unit/parseAssignment.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { parseAssignment } from '../../src/parsers/parseAssignment';
+import testCases from '../../sham-shared/sham-test/unit/parseAssignment.test.json';
+
+describe('parseAssignment', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = parseAssignment(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/parseAssignment.test.ts ===
+
+=== START FILE: ./unit/parseEndMarker.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { parseEndMarker } from '../../src/parsers/parseEndMarker';
+import testCases from '../../sham-shared/sham-test/unit/parseEndMarker.test.json';
+
+describe('parseEndMarker', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = parseEndMarker(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/parseEndMarker.test.ts ===
+
+=== START FILE: ./unit/validateHeredocDelimiter.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { validateHeredocDelimiter } from '../../src/validators/validateHeredocDelimiter';
+import testCases from '../../sham-shared/sham-test/unit/validateHeredocDelimiter.test.json';
+
+describe('validateHeredocDelimiter', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = validateHeredocDelimiter(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/validateHeredocDelimiter.test.ts ===
+
+=== START FILE: ./unit/classifyLine.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { classifyLine } from '../../src/utils/classifyLine';
+import testCases from '../../sham-shared/sham-test/unit/classifyLine.test.json';
+
+describe('classifyLine', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = classifyLine(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/classifyLine.test.ts ===
+
+=== START FILE: ./unit/getContextWindow.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { marked } from 'marked';
+import { getContextWindow } from '../../src/utils/getContextWindow';
+
+const testPath = join(__dirname, '../../sham-shared/sham-test/unit/getContextWindow.test.md');
+const mdContent = readFileSync(testPath, 'utf8');
+
+const tokens = marked.lexer(mdContent);
+const codeBlocks = tokens.filter(t => t.type === 'code' && t.lang === 'text');
+const testNames = tokens.filter(t => t.type === 'heading' && t.depth === 3).map(t => t.text);
+
+describe('getContextWindow', () => {
+  testNames.forEach((name, i) => {
+    const baseIndex = i * 3;
+    it(name, () => {
+      const input = codeBlocks[baseIndex].text;
+      const targetLine = parseInt(codeBlocks[baseIndex + 1].text.trim());
+      const expected = codeBlocks[baseIndex + 2].text;
+      const result = getContextWindow(input, targetLine);
+      expect(result).toEqual(expected);
+    });
+  });
+});
+=== END FILE: ./unit/getContextWindow.test.ts ===
+
+=== START FILE: ./unit/validateKey.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { validateKey } from '../../src/validators/validateKey';
+import testCases from '../../sham-shared/sham-test/unit/validateKey.test.json';
+
+describe('validateKey', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = validateKey(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./unit/validateKey.test.ts ===
+
+=== START FILE: ./integration.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { marked } from 'marked';
+import { parseSHAM } from '../src/parser';
+
+const testPath = join(__dirname, '../sham-shared/sham-test/integration.md');
+const mdContent = readFileSync(testPath, 'utf8');
+
+const tokens = marked.lexer(mdContent);
+const codeBlocks = tokens.filter(t => t.type === 'code');
+const testNames = tokens.filter(t => t.type === 'heading' && t.depth === 3).map(t => t.text);
+
+describe('SHAM Parser Integration Tests', () => {
+  testNames.forEach((name, i) => {
+    const baseIndex = i * 2;
+    it(name, () => {
+      const input = codeBlocks[baseIndex].text;
+      const expected = JSON.parse(codeBlocks[baseIndex + 1].text);
+      const result = parseSHAM(input);
+      expect(result).toEqual(expected);
+    });
+  });
+});
+=== END FILE: ./integration.test.ts ===
+
+=== END FILE: ./tests/file.txt ===
+
+=== START FILE: ./tests/unit/parseHeader.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { parseHeader } from '../../src/parsers/parseHeader';
+import testCases from '../../sham-shared/sham-test/unit/parseHeader.test.json';
+
+describe('parseHeader', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = parseHeader(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./tests/unit/parseHeader.test.ts ===
+
+=== START FILE: ./tests/unit/validateBlockId.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { validateBlockId } from '../../src/validators/validateBlockId';
+import testCases from '../../sham-shared/sham-test/unit/validateBlockId.test.json';
+
+describe('validateBlockId', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = validateBlockId(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./tests/unit/validateBlockId.test.ts ===
+
+=== START FILE: ./tests/unit/findInvalidCharPosition.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { findInvalidCharPosition } from '../../src/validators/findInvalidCharPosition';
+import testCases from '../../sham-shared/sham-test/unit/findInvalidCharPosition.test.json';
+
+describe('findInvalidCharPosition', () => {
+  testCases.groups.forEach(group => {
+    describe(group.name, () => {
+      group.tests.forEach(test => {
+        it(test.name, () => {
+          const result = findInvalidCharPosition(...test.input);
+          expect(result).toEqual(test.expected);
+        });
+      });
+    });
+  });
+});
+=== END FILE: ./tests/unit/findInvalidCharPosition.test.ts ===
+
+=== START FILE: ./tests/unit/parser.test.ts ===
+import { describe, it, expect } from 'vitest';
+import { parseSHAM } from '../../src/parser';
+import type { ParseResult } from '../../src/types';
+
+describe('parseSHAM unit tests', () => {
+  it('should correctly parse test case 007 (heredoc-after-valid-end)', () => {
+    const input = `#!SHAM [@three-char-SHA-256: col]
+content = <<'EOT_SHAM_col'
+This line is fine
+EOT_SHAM_col
+This breaks parsing
+EOT_SHAM_col
+#!END_SHAM_col`;
+
+    const expected: ParseResult = {
+      blocks: [{
+        id: 'col',
+        properties: {
+          content: 'This line is fine'
+        },
+        startLine: 1,
+        endLine: 7
+      }],
+      errors: [{
+        code: 'MALFORMED_ASSIGNMENT',
+        line: 5,
+        column: 1,
+        length: 19,
+        blockId: 'col',
+        content: 'This breaks parsing',
+        context: "This line is fine\nEOT_SHAM_col\nThis breaks parsing\nEOT_SHAM_col\n#!END_SHAM_col",
+        message: "Invalid line format in block 'col': not a valid key-value assignment or empty line"
+      }, {
+        code: 'MALFORMED_ASSIGNMENT',
+        line: 6,
+        column: 1,
+        length: 12,
+        blockId: 'col',
+        content: 'EOT_SHAM_col',
+        context: "This line is fine\nEOT_SHAM_col\nThis breaks parsing\nEOT_SHAM_col\n#!END_SHAM_col",
+        message: "Invalid line format in block 'col': not a valid key-value assignment or empty line"
+      }]
+    };
+
+    const result = parseSHAM(input);
+    expect(result).toEqual(expected);
+  });
+});
+=== END FILE: ./tests/unit/parser.test.ts ===

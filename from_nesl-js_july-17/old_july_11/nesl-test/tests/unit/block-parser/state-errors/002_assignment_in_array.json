@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "Assignment syntax not allowed in array context",
+      "content": "    key = R\"\"\"pv(invalid assignment)pv\"\"\"",
+      "context": "  items = [\n    - R\"\"\"pv(valid)pv\"\"\"\n    key = R\"\"\"pv(invalid assignment)pv\"\"\"\n    - R\"\"\"pv(valid)pv\"\"\"\n  ]"
+    }
+  ]
+}

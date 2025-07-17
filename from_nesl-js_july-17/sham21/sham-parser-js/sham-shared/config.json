@@ -1,0 +1,24 @@
+{
+  "limits": {
+    "keyMaxLength": 256,
+    "blockIdLength": 3,
+    "maxFileSize": 104857600
+  },
+  "patterns": {
+    "blockId": "^[A-Za-z0-9]{3}$",
+    "keyStart": "^[\\p{L}_]",
+    "keyChars": "^[\\p{L}\\p{N}_]*$",
+    "excludeChars": "[\\u200B-\\u200D\\u2060\\uFEFF\\u0000-\\u001F\\u007F-\\u009F]",
+    "heredocPrefix": "EOT_SHAM_"
+  },
+  "parser": {
+    "errorContextWindow": 5,
+    "lineEnding": "\n",
+    "lineTypePriority": [
+      "end_marker",
+      "header",
+      "assignment",
+      "empty"
+    ]
+  }
+}

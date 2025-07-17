@@ -1,0 +1,95 @@
+{
+  "function": "classifyLine",
+  "groups": [
+    {
+      "name": "header-lines",
+      "tests": [
+        {
+          "name": "basic-header",
+          "input": ["#!SHAM [@three-char-SHA-256: abc]"],
+          "expected": "header"
+        }
+      ]
+    },
+    {
+      "name": "end-markers",
+      "tests": [
+        {
+          "name": "basic-end",
+          "input": ["#!END_SHAM_abc"],
+          "expected": "end_marker"
+        },
+        {
+          "name": "end-with-trailing-space",
+          "input": ["#!END_SHAM_xyz "],
+          "expected": "end_marker"
+        }
+      ]
+    },
+    {
+      "name": "assignment-lines",
+      "tests": [
+        {
+          "name": "simple-assignment",
+          "input": ["key = \"value\""],
+          "expected": "assignment"
+        },
+        {
+          "name": "assignment-no-spaces",
+          "input": ["key=\"value\""],
+          "expected": "assignment"
+        },
+        {
+          "name": "multiple-equals",
+          "input": ["key = \"val=ue\""],
+          "expected": "assignment"
+        },
+        {
+          "name": "heredoc-assignment",
+          "input": ["content = <<'EOT_SHAM_abc'"],
+          "expected": "assignment"
+        }
+      ]
+    },
+    {
+      "name": "empty-lines",
+      "tests": [
+        {
+          "name": "truly-empty",
+          "input": [""],
+          "expected": "empty"
+        },
+        {
+          "name": "only-spaces",
+          "input": ["    "],
+          "expected": "empty"
+        },
+        {
+          "name": "only-tabs",
+          "input": ["\t\t"],
+          "expected": "empty"
+        }
+      ]
+    },
+    {
+      "name": "unknown-lines",
+      "tests": [
+        {
+          "name": "no-equals-sign",
+          "input": ["just some text"],
+          "expected": "unknown"
+        },
+        {
+          "name": "malformed-header",
+          "input": ["#!SHAM without brackets"],
+          "expected": "header"
+        },
+        {
+          "name": "comment-like",
+          "input": ["// this looks like a comment"],
+          "expected": "unknown"
+        }
+      ]
+    }
+  ]
+}

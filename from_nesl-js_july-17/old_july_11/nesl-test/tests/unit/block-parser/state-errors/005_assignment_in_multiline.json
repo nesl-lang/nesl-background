@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "Assignment syntax not allowed in multiline context",
+      "content": "    key = R\"\"\"pv(no assignments here)pv\"\"\"",
+      "context": "  text = (\n    R\"\"\"pv(valid)pv\"\"\"\n    key = R\"\"\"pv(no assignments here)pv\"\"\"\n    R\"\"\"pv(valid)pv\"\"\"\n  )"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<<<<<<<<<nesl
+{
+  key = R"""pv(first)pv"""
+  key = R"""pv(second)pv"""
+  other = R"""pv(value)pv"""
+  key = R"""pv(third)pv"""
+}
+=========nesl

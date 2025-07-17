@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 6,
+      "code": "eof_unexpected",
+      "message": "Unexpected end of file (expected closing delimiter for array)",
+      "content": "",
+      "context": "{\n  nested = {\n    deep = [\n      - R\"\"\"pv(never closed)pv\"\"\"\n"
+    }
+  ]
+}

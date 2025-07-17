@@ -1,0 +1,14 @@
+<<<<<<<<<nesl
+{
+  items = [
+    - {
+      id = R"""pv(1)pv"""
+      name = R"""pv(first)pv"""
+    }
+    - {
+      id = R"""pv(2)pv"""
+      name = R"""pv(second)pv"""
+    }
+  ]
+}
+=========nesl

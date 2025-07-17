@@ -1,0 +1,7 @@
+<<<<<<<<<nesl
+{
+  closing = R"""pv(value)pv""" }
+  garbage = R"""pv(value)pv""" extra
+  multiple = R"""pv(value)pv""" more stuff
+}
+=========nesl

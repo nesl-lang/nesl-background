@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "invalid_key",
+      "message": "Key contains invalid characters (equals sign)",
+      "content": "  bad=key = R\"\"\"pv(equals in key name)pv\"\"\"",
+      "context": "  valid_key = R\"\"\"pv(this is fine)pv\"\"\"\n  bad=key = R\"\"\"pv(equals in key name)pv\"\"\"\n  another = R\"\"\"pv(also valid)pv\"\"\""
+    }
+  ]
+}

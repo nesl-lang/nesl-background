@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "delimiter_mismatch",
+      "message": "Expected } but found ]",
+      "content": "  ]",
+      "context": "    key = R\"\"\"pv(value)pv\"\"\"\n  ]\n}"
+    }
+  ]
+}

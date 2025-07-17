@@ -1,0 +1,18 @@
+<<<<<<<<<nesl
+{
+  key = R"""pv(first value)pv"""
+  key = R"""pv(second value)pv"""
+  key = R"""pv(third value)pv"""
+  nested = {
+    dup = R"""pv(inner first)pv"""
+    dup = R"""pv(inner second)pv"""
+  }
+  array = [
+    - {
+      same = R"""pv(array first)pv"""
+      same = R"""pv(array second)pv"""
+    }
+  ]
+  key = R"""pv(fourth value)pv"""
+}
+=========nesl

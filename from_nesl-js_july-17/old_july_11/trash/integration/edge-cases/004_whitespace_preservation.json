@@ -1,0 +1,13 @@
+[
+  {
+    "tabs": "\tstart\tmiddle\tend\t",
+    "spaces": "    four spaces",
+    "mixed": " \tmix of  spaces\t\tand tabs\t ",
+    "newline_escape": "has\\nnewline",
+    "carriage_return": "has\\rcarriage",
+    "vertical_tab": "has\\vvertical",
+    "multiline_indent": "    line 1\n  line 2\n      line 3\n\ttab line",
+    "trailing": "trailing spaces    ",
+    "only_spaces": "     "
+  }
+]

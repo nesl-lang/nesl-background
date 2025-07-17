@@ -1,0 +1,8 @@
+[
+  {
+    "items": ["first", "second"],
+    "nested": {
+      "list": ["inner item"]
+    }
+  }
+]

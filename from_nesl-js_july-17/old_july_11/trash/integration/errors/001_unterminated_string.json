@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 4,
+      "code": "string_unterminated",
+      "message": "String literal starting with R\"\"\"pv( was not closed with )pv\"\"\" on the same line",
+      "content": "  bad = R\"\"\"pv(this string never ends",
+      "context": "  good = R\"\"\"pv(this is fine)pv\"\"\"\n  bad = R\"\"\"pv(this string never ends\n  another = R\"\"\"pv(unreachable)pv\"\"\""
+    }
+  ]
+}

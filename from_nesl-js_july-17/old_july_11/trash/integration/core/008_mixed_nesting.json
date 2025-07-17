@@ -1,0 +1,33 @@
+[
+  {
+    "data": [
+      {
+        "id": "1",
+        "items": ["item1", "item2"],
+        "description": "First object\nwith multiline"
+      },
+      {
+        "id": "2",
+        "nested": {
+          "array_in_object": [
+            {
+              "deep": "value"
+            }
+          ]
+        }
+      }
+    ],
+    "complex": {
+      "users": [
+        {
+          "name": "Alice",
+          "roles": ["admin", "user"]
+        },
+        {
+          "name": "Bob",
+          "bio": "Software engineer\nCoffee enthusiast"
+        }
+      ]
+    }
+  }
+]

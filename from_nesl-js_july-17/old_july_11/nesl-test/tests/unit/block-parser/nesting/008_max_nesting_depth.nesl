@@ -1,0 +1,13 @@
+<<<<<<<<<nesl
+{
+  l1 = {
+    l2 = {
+      l3 = {
+        l4 = {
+          l5 = R"""pv(depth 5 - would need 95 more levels to hit limit)pv"""
+        }
+      }
+    }
+  }
+}
+=========nesl

@@ -1,0 +1,14 @@
+<<<<<<<<<nesl
+{
+  简体中文 = R"""pv(Simplified Chinese)pv"""
+  日本語 = R"""pv(Japanese)pv"""
+  한국어 = R"""pv(Korean)pv"""
+  العربية = R"""pv(Arabic)pv"""
+  עברית = R"""pv(Hebrew)pv"""
+  Ελληνικά = R"""pv(Greek)pv"""
+  Русский = R"""pv(Russian)pv"""
+  emoji_🚀 = R"""pv(rocket)pv"""
+  mixed_abc_123_世界 = R"""pv(mixed scripts)pv"""
+  café = R"""pv(accented)pv"""
+}
+=========nesl

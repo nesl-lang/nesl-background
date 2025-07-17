@@ -1,0 +1,9 @@
+<<<<<<<<<nesl
+{
+  text = (
+    R"""pv(valid string)pv"""
+    {
+    R"""pv(another string)pv"""
+  )
+}
+=========nesl

@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 7,
+      "code": "delimiter_mismatch",
+      "message": "Expected } but found ]",
+      "content": "  ]",
+      "context": "    bad = R\"\"\"pv(unclosed\n  ]\n  after = R\"\"\"pv(unreachable due to mismatch)pv\"\"\""
+    }
+  ]
+}

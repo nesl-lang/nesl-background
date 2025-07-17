@@ -1,0 +1,58 @@
+{
+  "function": "parseEndMarker",
+  "groups": [
+    {
+      "name": "valid",
+      "tests": [
+        {
+          "name": "normal-case",
+          "input": ["#!END_SHAM_xyz"],
+          "expected": {
+            "isEnd": true,
+            "blockId": "xyz"
+          }
+        }
+      ]
+    },
+    {
+      "name": "non-matching",
+      "tests": [
+        {
+          "name": "missing-sharp",
+          "input": ["END_SHAM_abc"],
+          "expected": {
+            "isEnd": false
+          }
+        },
+        {
+          "name": "lowercase-end",
+          "input": ["#!end_sham_abc"],
+          "expected": {
+            "isEnd": false
+          }
+        },
+        {
+          "name": "extra-text-after",
+          "input": ["#!END_SHAM_abc extra"],
+          "expected": {
+            "isEnd": false
+          }
+        },
+        {
+          "name": "wrong-id-length",
+          "input": ["#!END_SHAM_ab"],
+          "expected": {
+            "isEnd": false
+          }
+        },
+        {
+          "name": "special-chars-in-id",
+          "input": ["#!END_SHAM_a-b"],
+          "expected": {
+            "isEnd": false
+          }
+        }
+      ]
+    }
+  ]
+}

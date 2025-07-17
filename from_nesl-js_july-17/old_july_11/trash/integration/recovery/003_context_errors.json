@@ -1,0 +1,25 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "invalid_context",
+      "message": "Assignment syntax not allowed in array context",
+      "content": "    key = R\"\"\"pv(assignment in array)pv\"\"\"",
+      "context": "    - R\"\"\"pv(valid)pv\"\"\"\n    key = R\"\"\"pv(assignment in array)pv\"\"\"\n    - R\"\"\"pv(valid after error)pv\"\"\""
+    },
+    {
+      "line": 10,
+      "code": "invalid_context",
+      "message": "Only string literals allowed in multiline context",
+      "content": "    {",
+      "context": "    R\"\"\"pv(line 1)pv\"\"\"\n    {\n    R\"\"\"pv(line 2)pv\"\"\""
+    },
+    {
+      "line": 12,
+      "code": "invalid_context",
+      "message": "Only string literals allowed in multiline context",
+      "content": "    - R\"\"\"pv(dash in multiline)pv\"\"\"",
+      "context": "    R\"\"\"pv(line 2)pv\"\"\"\n    - R\"\"\"pv(dash in multiline)pv\"\"\"\n  )"
+    }
+  ]
+}

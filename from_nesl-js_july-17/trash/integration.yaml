@@ -1,0 +1,795 @@
+test_manifest:
+ - "001-empty-file"
+ - "002-single-block-basic"
+ - "003-empty-block"
+ - "004-heredoc-basic"
+ - "005-duplicate-key"
+ - "006-no-comments-allowed"
+ - "007-heredoc-after-valid-end"
+ - "008-malformed-header"
+ - "009-invalid-block-id"
+ - "010-unclosed-quote"
+ - "011-empty-quoted-value"
+ - "012-empty-heredoc"
+ - "013-max-length-key"
+ - "014-key-too-long"
+ - "015-unclosed-block"
+ - "016-mismatched-end"
+ - "017-heredoc-with-sham-markers"
+ - "018-missing-key-name"
+ - "019-escaped-quotes"
+ - "020-multiple-blocks"
+ - "021-heredoc-empty-lines"
+ - "022-invalid-assignment"
+ - "023-utf8-keys"
+ - "024-invalid-utf8-keys"
+ - "025-whitespace-in-keys"
+ - "026-newline-in-quoted-string"
+ - "027-unclosed-heredoc"
+ - "028-invalid-value-format"
+ - "029-block-id-special-chars"
+ - "030-no-comments-variations"
+ - "031-heredoc-with-end-marker"
+
+tests:
+  001-empty-file:
+    input: ""
+    expected: | # json
+      {
+        "blocks": [],
+        "errors": []
+      }
+ 
+  002-single-block-basic:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: abc]
+      path = "/tmp/test.txt"
+      name = "example"
+      #!END_SHAM_abc
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "abc",
+          "properties": {
+            "path": "/tmp/test.txt",
+            "name": "example"
+          },
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": []
+      }
+ 
+  003-empty-block:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: xyz]
+      #!END_SHAM_xyz
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "xyz",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 2
+        }],
+        "errors": []
+      }
+ 
+  004-heredoc-basic:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: h3r]
+      content = <<'EOT_SHAM_h3r'
+      Line one
+      Line two
+      EOT_SHAM_h3r
+      #!END_SHAM_h3r
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "h3r",
+          "properties": {
+            "content": "Line one\nLine two"
+          },
+          "startLine": 1,
+          "endLine": 6
+        }],
+        "errors": []
+      }
+ 
+  005-duplicate-key:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: dup]
+      key = "first"
+      key = "second"
+      #!END_SHAM_dup
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "dup",
+          "properties": {
+            "key": "second"
+          },
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": [{
+          "code": "DUPLICATE_KEY",
+          "line": 3,
+          "column": 1,
+          "length": 3,
+          "blockId": "dup",
+          "content": "key = \"second\"",
+          "context": "#!SHAM [@three-char-SHA-256: dup]\nkey = \"first\"\nkey = \"second\"\n#!END_SHAM_dup",
+          "message": "Duplicate key 'key' in block 'dup'"
+        }]
+      }
+ 
+  006-no-comments-allowed:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: cmt]
+      // This is not a comment
+      key1 = "value1"
+        // Not a comment with leading spaces
+      key2 = "value2"
+      #!END_SHAM_cmt
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "cmt",
+          "properties": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "startLine": 1,
+          "endLine": 6
+        }],
+        "errors": [{
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 2,
+          "column": 1,
+          "length": 24,
+          "blockId": "cmt",
+          "content": "// This is not a comment",
+          "context": "#!SHAM [@three-char-SHA-256: cmt]\n// This is not a comment\nkey1 = \"value1\"\n  // Not a comment with leading spaces\nkey2 = \"value2\"",
+          "message": "Invalid line format in block 'cmt': not a valid key-value assignment or empty line"
+        }, {
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 4,
+          "column": 1,
+          "length": 38,
+          "blockId": "cmt",
+          "content": "  // Not a comment with leading spaces",
+          "context": "// This is not a comment\nkey1 = \"value1\"\n  // Not a comment with leading spaces\nkey2 = \"value2\"\n#!END_SHAM_cmt",
+          "message": "Invalid line format in block 'cmt': not a valid key-value assignment or empty line"
+        }]
+      }
+ 
+  007-heredoc-after-valid-end:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: col]
+      content = <<'EOT_SHAM_col'
+      This line is fine
+      EOT_SHAM_col
+      This breaks parsing
+      EOT_SHAM_col
+      #!END_SHAM_col
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "col",
+          "properties": {
+            "content": "This line is fine"
+          },
+          "startLine": 1,
+          "endLine": 7
+        }],
+        "errors": [{
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 5,
+          "column": 1,
+          "length": 19,
+          "blockId": "col",
+          "content": "This breaks parsing",
+          "context": "content = <<'EOT_SHAM_col'\nThis line is fine\nEOT_SHAM_col\nThis breaks parsing\nEOT_SHAM_col",
+          "message": "Invalid line format in block 'col': not a valid key-value assignment or empty line"
+        }]
+      }
+ 
+  008-malformed-header:
+    input: | # sham
+      #!SHAM [missing-at-sign: bad]
+      key = "value"
+      #!END_SHAM_bad
+    expected: | # json
+      {
+        "blocks": [],
+        "errors": [{
+          "code": "MALFORMED_HEADER",
+          "line": 1,
+          "column": 1,
+          "length": 30,
+          "blockId": null,
+          "content": "#!SHAM [missing-at-sign: bad]",
+          "context": "#!SHAM [missing-at-sign: bad]\nkey = \"value\"\n#!END_SHAM_bad",
+          "message": "Invalid SHAM header format"
+        }]
+      }
+ 
+  009-invalid-block-id:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: ab]
+      key = "value"
+      #!END_SHAM_ab
+    expected: | # json
+      {
+        "blocks": [],
+        "errors": [{
+          "code": "INVALID_BLOCK_ID",
+          "line": 1,
+          "column": 30,
+          "length": 2,
+          "blockId": null,
+          "content": "#!SHAM [@three-char-SHA-256: ab]",
+          "context": "#!SHAM [@three-char-SHA-256: ab]\nkey = \"value\"\n#!END_SHAM_ab",
+          "message": "Block ID must be exactly 3 characters"
+        }]
+      }
+ 
+  010-unclosed-quote:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: quo]
+      key = "unclosed
+      #!END_SHAM_quo
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "quo",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "UNCLOSED_QUOTE",
+          "line": 2,
+          "column": 7,
+          "length": 9,
+          "blockId": "quo",
+          "content": "key = \"unclosed",
+          "context": "#!SHAM [@three-char-SHA-256: quo]\nkey = \"unclosed\n#!END_SHAM_quo",
+          "message": "Unclosed quoted string"
+        }]
+      }
+ 
+  011-empty-quoted-value:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: emp]
+      empty = ""
+      #!END_SHAM_emp
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "emp",
+          "properties": {
+            "empty": ""
+          },
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": []
+      }
+ 
+  012-empty-heredoc:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: ehd]
+      content = <<'EOT_SHAM_ehd'
+      EOT_SHAM_ehd
+      #!END_SHAM_ehd
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "ehd",
+          "properties": {
+            "content": ""
+          },
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": []
+      }
+ 
+  013-max-length-key:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: max]
+      k_56789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345 = "256 chars"
+      #!END_SHAM_max
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "max",
+          "properties": {
+            "k_56789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345": "256 chars"
+          },
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": []
+      }
+ 
+  014-key-too-long:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: lng]
+      k_567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456 = "257 chars"
+      #!END_SHAM_lng
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "lng",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "INVALID_KEY",
+          "line": 2,
+          "column": 1,
+          "length": 257,
+          "blockId": "lng",
+          "content": "k_567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456 = \"257 chars\"",
+          "context": "#!SHAM [@three-char-SHA-256: lng]\nk_567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456 = \"257 chars\"\n#!END_SHAM_lng",
+          "message": "Key exceeds 256 character limit"
+        }]
+      }
+ 
+  015-unclosed-block:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: unc]
+      key = "value"
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "unc",
+          "properties": {
+            "key": "value"
+          },
+          "startLine": 1,
+          "endLine": null
+        }],
+        "errors": [{
+          "code": "UNCLOSED_BLOCK",
+          "line": 3,
+          "column": 1,
+          "length": 0,
+          "blockId": "unc",
+          "content": "",
+          "context": "#!SHAM [@three-char-SHA-256: unc]\nkey = \"value\"",
+          "message": "Block 'unc' not closed before EOF"
+        }]
+      }
+ 
+  016-mismatched-end:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: mis]
+      key = "value"
+      #!END_SHAM_xyz
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "mis",
+          "properties": {
+            "key": "value"
+          },
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "MISMATCHED_END",
+          "line": 3,
+          "column": 1,
+          "length": 14,
+          "blockId": "mis",
+          "content": "#!END_SHAM_xyz",
+          "context": "#!SHAM [@three-char-SHA-256: mis]\nkey = \"value\"\n#!END_SHAM_xyz",
+          "message": "End marker 'xyz' doesn't match block ID 'mis'"
+        }]
+      }
+ 
+  017-heredoc-with-sham-markers:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: shm]
+      content = <<'EOT_SHAM_shm'
+      This contains #!SHAM [@three-char-SHA-256: xyz]
+      And also #!END_SHAM_xyz
+      But they're just content
+      EOT_SHAM_shm
+      #!END_SHAM_shm
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "shm",
+          "properties": {
+            "content": "This contains #!SHAM [@three-char-SHA-256: xyz]\nAnd also #!END_SHAM_xyz\nBut they're just content"
+          },
+          "startLine": 1,
+          "endLine": 7
+        }],
+        "errors": []
+      }
+ 
+  018-missing-key-name:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: edg]
+      = "missing key"
+      #!END_SHAM_edg
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "edg",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "EMPTY_KEY",
+          "line": 2,
+          "column": 1,
+          "length": 1,
+          "blockId": "edg",
+          "content": "= \"missing key\"",
+          "context": "#!SHAM [@three-char-SHA-256: edg]\n= \"missing key\"\n#!END_SHAM_edg",
+          "message": "Assignment without key name"
+        }]
+      }
+ 
+  019-escaped-quotes:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: esc]
+      path = "C:\\Users\\test\\file.txt"
+      msg = "He said \"hello\""
+      #!END_SHAM_esc
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "esc",
+          "properties": {
+            "path": "C:\\Users\\test\\file.txt",
+            "msg": "He said \"hello\""
+          },
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": []
+      }
+ 
+  020-multiple-blocks:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: bl1]
+      key1 = "value1"
+      #!END_SHAM_bl1
+ 
+      #!SHAM [@three-char-SHA-256: bl2]
+      key2 = "value2"
+      #!END_SHAM_bl2
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "bl1",
+          "properties": {
+            "key1": "value1"
+          },
+          "startLine": 1,
+          "endLine": 3
+        }, {
+          "id": "bl2",
+          "properties": {
+            "key2": "value2"
+          },
+          "startLine": 5,
+          "endLine": 7
+        }],
+        "errors": []
+      }
+ 
+  021-heredoc-empty-lines:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: hel]
+      content = <<'EOT_SHAM_hel'
+      Line 1
+ 
+      Line 3
+      EOT_SHAM_hel
+      #!END_SHAM_hel
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "hel",
+          "properties": {
+            "content": "Line 1\n\nLine 3"
+          },
+          "startLine": 1,
+          "endLine": 7
+        }],
+        "errors": []
+      }
+ 
+  022-invalid-assignment:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: inv]
+      key := "wrong operator"
+      #!END_SHAM_inv
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "inv",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "INVALID_ASSIGNMENT_OPERATOR",
+          "line": 2,
+          "column": 5,
+          "length": 2,
+          "blockId": "inv",
+          "content": "key := \"wrong operator\"",
+          "context": "#!SHAM [@three-char-SHA-256: inv]\nkey := \"wrong operator\"\n#!END_SHAM_inv",
+          "message": "Invalid assignment operator - only '=' is allowed"
+        }]
+      }
+ 
+  023-utf8-keys:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: utf]
+      用户名 = "张三"
+      données_count = "42"
+      αβγ = "greek"
+      #!END_SHAM_utf
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "utf",
+          "properties": {
+            "用户名": "张三",
+            "données_count": "42",
+            "αβγ": "greek"
+          },
+          "startLine": 1,
+          "endLine": 5
+        }],
+        "errors": []
+      }
+ 
+  024-invalid-utf8-keys:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: bad]
+      key name = "spaces not allowed"
+      key​value = "zero-width space"
+      #!END_SHAM_bad
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "bad",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": [{
+          "code": "INVALID_KEY",
+          "line": 2,
+          "column": 1,
+          "length": 8,
+          "blockId": "bad",
+          "content": "key name = \"spaces not allowed\"",
+          "context": "#!SHAM [@three-char-SHA-256: bad]\nkey name = \"spaces not allowed\"\nkey​value = \"zero-width space\"\n#!END_SHAM_bad",
+          "message": "Key contains invalid character ' ' at position 4"
+        }, {
+          "code": "INVALID_KEY",
+          "line": 3,
+          "column": 1,
+          "length": 9,
+          "blockId": "bad",
+          "content": "key​value = \"zero-width space\"",
+          "context": "#!SHAM [@three-char-SHA-256: bad]\nkey name = \"spaces not allowed\"\nkey​value = \"zero-width space\"\n#!END_SHAM_bad",
+          "message": "Key contains invalid character '​' at position 4"
+        }]
+      }
+ 
+  025-whitespace-in-keys:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: wsp]
+      	key = "tab at start"
+      key	name = "tab in middle"
+      #!END_SHAM_wsp
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "wsp",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": [{
+          "code": "INVALID_KEY",
+          "line": 2,
+          "column": 1,
+          "length": 4,
+          "blockId": "wsp",
+          "content": "\tkey = \"tab at start\"",
+          "context": "#!SHAM [@three-char-SHA-256: wsp]\n\tkey = \"tab at start\"\nkey\tname = \"tab in middle\"\n#!END_SHAM_wsp",
+          "message": "Key contains invalid character '	' at position 1"
+        }, {
+          "code": "INVALID_KEY",
+          "line": 3,
+          "column": 1,
+          "length": 8,
+          "blockId": "wsp",
+          "content": "key\tname = \"tab in middle\"",
+          "context": "#!SHAM [@three-char-SHA-256: wsp]\n\tkey = \"tab at start\"\nkey\tname = \"tab in middle\"\n#!END_SHAM_wsp",
+          "message": "Key contains invalid character '	' at position 4"
+        }]
+      }
+ 
+  026-newline-in-quoted-string:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: nwl]
+      key = "line1
+      line2"
+      #!END_SHAM_nwl
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "nwl",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 4
+        }],
+        "errors": [{
+          "code": "UNCLOSED_QUOTE",
+          "line": 2,
+          "column": 7,
+          "length": 6,
+          "blockId": "nwl",
+          "content": "key = \"line1",
+          "context": "#!SHAM [@three-char-SHA-256: nwl]\nkey = \"line1\nline2\"\n#!END_SHAM_nwl",
+          "message": "Unclosed quoted string"
+        }]
+      }
+ 
+  027-unclosed-heredoc:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: uhd]
+      content = <<'EOT_SHAM_uhd'
+      Some content
+      #!END_SHAM_uhd
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "uhd",
+          "properties": {},
+          "startLine": 1,
+          "endLine": null
+        }],
+        "errors": [{
+          "code": "UNCLOSED_HEREDOC",
+          "line": 5,
+          "column": 1,
+          "length": 0,
+          "blockId": "uhd",
+          "content": "",
+          "context": "#!SHAM [@three-char-SHA-256: uhd]\ncontent = <<'EOT_SHAM_uhd'\nSome content\n#!END_SHAM_uhd",
+          "message": "Heredoc 'EOT_SHAM_uhd' not closed before EOF"
+        }]
+      }
+ 
+  028-invalid-value-format:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: ivf]
+      key = unquoted
+      #!END_SHAM_ivf
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "ivf",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 3
+        }],
+        "errors": [{
+          "code": "INVALID_VALUE",
+          "line": 2,
+          "column": 7,
+          "length": 8,
+          "blockId": "ivf",
+          "content": "key = unquoted",
+          "context": "#!SHAM [@three-char-SHA-256: ivf]\nkey = unquoted\n#!END_SHAM_ivf",
+          "message": "Value must be a quoted string or heredoc"
+        }]
+      }
+ 
+  029-block-id-special-chars:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: a-b]
+      key = "value"
+      #!END_SHAM_a-b
+    expected: | # json
+      {
+        "blocks": [],
+        "errors": [{
+          "code": "INVALID_BLOCK_ID",
+          "line": 1,
+          "column": 30,
+          "length": 3,
+          "blockId": null,
+          "content": "#!SHAM [@three-char-SHA-256: a-b]",
+          "context": "#!SHAM [@three-char-SHA-256: a-b]\nkey = \"value\"\n#!END_SHAM_a-b",
+          "message": "Block ID must be exactly 3 characters"
+        }]
+      }
+ 
+  030-no-comments-variations:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: ncm]
+      //not a comment without space
+      // not a comment with space
+      key = "value" // inline not allowed
+      #!END_SHAM_ncm
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "ncm",
+          "properties": {},
+          "startLine": 1,
+          "endLine": 5
+        }],
+        "errors": [{
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 2,
+          "column": 1,
+          "length": 29,
+          "blockId": "ncm",
+          "content": "//not a comment without space",
+          "context": "#!SHAM [@three-char-SHA-256: ncm]\n//not a comment without space\n// not a comment with space\nkey = \"value\" // inline not allowed\n#!END_SHAM_ncm",
+          "message": "Invalid line format in block 'ncm': not a valid key-value assignment or empty line"
+        }, {
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 3,
+          "column": 1,
+          "length": 27,
+          "blockId": "ncm",
+          "content": "// not a comment with space",
+          "context": "#!SHAM [@three-char-SHA-256: ncm]\n//not a comment without space\n// not a comment with space\nkey = \"value\" // inline not allowed\n#!END_SHAM_ncm",
+          "message": "Invalid line format in block 'ncm': not a valid key-value assignment or empty line"
+        }, {
+          "code": "MALFORMED_ASSIGNMENT",
+          "line": 4,
+          "column": 1,
+          "length": 35,
+          "blockId": "ncm",
+          "content": "key = \"value\" // inline not allowed",
+          "context": "//not a comment without space\n// not a comment with space\nkey = \"value\" // inline not allowed\n#!END_SHAM_ncm",
+          "message": "Invalid line format in block 'ncm': not a valid key-value assignment or empty line"
+        }]
+      }
+
+# note ! this last error is unclear! maybe it should be "invalid text found after assignment" or something? 
+ 
+  031-heredoc-with-end-marker:
+    input: | # sham
+      #!SHAM [@three-char-SHA-256: abc]
+      content = <<'EOT_SHAM_abc'
+      Some content here
+      #!END_SHAM_abc
+      More content
+      EOT_SHAM_abc
+      #!END_SHAM_abc
+    expected: | # json
+      {
+        "blocks": [{
+          "id": "abc",
+          "properties": {
+            "content": "Some content here\n#!END_SHAM_abc\nMore content"
+          },
+          "startLine": 1,
+          "endLine": 7
+        }],
+        "errors": []
+      }

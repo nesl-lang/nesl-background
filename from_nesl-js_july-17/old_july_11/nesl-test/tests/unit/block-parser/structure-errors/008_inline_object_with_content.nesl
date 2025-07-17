@@ -1,0 +1,5 @@
+<<<<<<<<<nesl
+{
+  data = { key = R"""pv(value)pv""" }
+}
+=========nesl

@@ -1,0 +1,11 @@
+{
+  "blocks": [],
+  "errors": [
+    {
+      "line": 1,
+      "code": "unclosed_block",
+      "message": "Block starting at line 1 was not closed with =========nesl",
+      "context": "<<<<<<<<<nesl\n{\n  key = R\"\"\"pv(value)pv\"\"\"\n  nested = {\n    inner = R\"\"\"pv(never closes)pv\"\"\""
+    }
+  ]
+}

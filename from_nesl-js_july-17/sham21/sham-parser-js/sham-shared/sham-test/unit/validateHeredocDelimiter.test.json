@@ -1,0 +1,60 @@
+{
+  "function": "validateHeredocDelimiter",
+  "groups": [
+    {
+      "name": "valid-delimiters",
+      "tests": [
+        {
+          "name": "correct-id",
+          "input": ["EOT_SHAM_abc", "abc"],
+          "expected": { "valid": true }
+        }
+      ]
+    },
+    {
+      "name": "mismatch-id",
+      "tests": [
+        {
+          "name": "wrong-id",
+          "input": ["EOT_SHAM_xyz", "abc"],
+          "expected": {
+            "valid": false,
+            "error": "Heredoc delimiter must be 'EOT_SHAM_abc'"
+          }
+        },
+        {
+          "name": "wrong-prefix",
+          "input": ["END_SHAM_abc", "abc"],
+          "expected": {
+            "valid": false,
+            "error": "Heredoc delimiter must be 'EOT_SHAM_abc'"
+          }
+        },
+        {
+          "name": "lowercase-prefix",
+          "input": ["eot_sham_abc", "abc"],
+          "expected": {
+            "valid": false,
+            "error": "Heredoc delimiter must be 'EOT_SHAM_abc'"
+          }
+        },
+        {
+          "name": "extra-suffix",
+          "input": ["EOT_SHAM_abc_extra", "abc"],
+          "expected": {
+            "valid": false,
+            "error": "Heredoc delimiter must be 'EOT_SHAM_abc'"
+          }
+        },
+        {
+          "name": "partial-match",
+          "input": ["EOT_SHAM_ab", "abc"],
+          "expected": {
+            "valid": false,
+            "error": "Heredoc delimiter must be 'EOT_SHAM_abc'"
+          }
+        }
+      ]
+    }
+  ]
+}

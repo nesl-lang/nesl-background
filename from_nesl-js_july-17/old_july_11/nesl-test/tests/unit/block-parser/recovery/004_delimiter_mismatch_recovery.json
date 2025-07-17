@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "line": 5,
+      "code": "delimiter_mismatch",
+      "message": "Expected ] but found }",
+      "content": "  }",
+      "context": "  array = [\n    - R\"\"\"pv(item)pv\"\"\"\n  }\n  after_mismatch = R\"\"\"pv(unreachable)pv\"\"\"\n}"
+    }
+  ]
+}
