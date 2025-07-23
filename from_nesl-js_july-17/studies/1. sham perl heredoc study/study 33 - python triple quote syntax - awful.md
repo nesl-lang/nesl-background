@@ -1,51 +1,37 @@
+## python search/replace syntax for tools
 
-Here's the updated SHAM syntax guide where each action is in its own SHAM code block:
-
-## SHAM Syntax Format (Single Action Per Block)
 
 ### File Creation Example:
 
-```sh sham
-#!SHAM [@three-char-SHA-256: k7m]
-action = "create_file"
-path = "/tmp/hello.txt"
-content = <<'EOT_k7m'
- Hello world!
- how are you?
-EOT_k7m
-#!END_k7m
+```py loaf
+loaf.create_file(
+    path="/Users/stuart/repos/pathguard-fs/turts.md",
+    content=""" Hello world!
+ how are you?"""
+)
 
-#!SHAM [@three-char-SHA-256: h7d]
-action = "create_file"
-path = "/tmp/hello2.txt"
-content = <<'EOT_h7d'
- Hello other world!
- how are you?
-EOT_h7d
-#!END_h7d
+loaf.create_file(
+    path="/Users/stuart/repos/pathguard-fs/turts.md",
+    content=""" Hello other world!
+ how are you?"""
+)
 ```
 
 ### Search/Replace Example:
 
-```sh sham
-#!SHAM [@three-char-SHA-256: vc8]
-action = "replace_in_file"
-search = <<'EOT_vc8'
- Hello world!
- how are you?
-EOT_vc8
-replace = <<'EOT_vc8'
-
+```py loaf
+loaf.replace_in_file(
+    path="/Users/stuart/repos/pathguard-fs/turts.md",
+    old_string=""" Hello world!
+ how are you?""",
+    new_string="""
    
  asdf "awef" 'lkj'
 lalalala 
 
-EOT_vc8
-#!END_vc8
+""",
+)
 ```
-
-note: each heredoc delimiter is `EOT_` followed by the `three-char-SHA-256` value. also appended to the END
-
 
 ### Equivalent Perl Syntax:
 
@@ -80,11 +66,11 @@ EOT_h7d
 my $sham_block_vc8 = {
     # replace some text for blah blah blha reasons
     action => "replace_in_file",
-    search => <<'EOT_vc8'
+    old_string => <<'EOT_vc8'
  Hello world!
  how are you?
 EOT_vc8
-    replace => <<'EOT_vc8'
+    new_string => <<'EOT_vc8'
 
    
  asdf "awef" 'lkj'
@@ -96,7 +82,7 @@ EOT_vc8
 
 ---
  
-please format these literal multiline text string as SHAM search/replace syntax:
+please format these literal multiline text string as python search/replace syntax:
 
 search text block:
 
@@ -122,22 +108,22 @@ Violets are blue
 ##############################################################################
 ##############################################################################
 
-we need to update the parser and tests so it ignores the fence syntax so we can put whatever
+not any better.  excellent
 
 ❌
 ✅
 
-c4.1m  : ❌❌❌❌
-c4.1   : ✅✅✅✅ ✅✅
+c4.1m  : 
+c4.1   : 
 co4mh  : 
 co4m   : 
 c4o    : 
-4b     : 
-12b    : 
-27b    : 
-2.0fl  : ✅✅✅✅ ✅✅✅✅ ✅✅✅✅ ✅✅
-2.0f   : 
-2.5fl  : ✅✅✅✅ ✅✅✅✅ ✅✅✅✅ ✅
-2.5f   : 
-2.5p   : 
+4b     : ❌
+12b    : ❌
+27b    : ❌
+2.0fl  : ❌
+2.0f   : ❌
+2.5fl  : ❌
+2.5f   : ❌
+2.5p   : ❌
 clh3.5 : 
